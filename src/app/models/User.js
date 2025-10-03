@@ -9,6 +9,9 @@ const UserSchema = mongoose.Schema({
     role: {type: String, enum: ['user', 'hotel_owner', 'admin'], default: 'user'},
     avatar: {url: String, publicId: String},
     gender: {type: String, enum: ['male', 'female', 'other'], required: true},
+    passwordResetToken: String,
+    passwordResetExpires: Date,
+    isVerify: {type: Boolean, default: false},
 }, {
     timestamps: true
 });

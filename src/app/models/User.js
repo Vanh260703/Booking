@@ -12,6 +12,12 @@ const UserSchema = mongoose.Schema({
     passwordResetToken: String,
     passwordResetExpires: Date,
     isVerify: {type: Boolean, default: false},
+    federated_credentials: [
+        {
+            provider: String,
+            subject: String
+        }
+    ],
 }, {
     timestamps: true
 });

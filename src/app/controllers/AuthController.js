@@ -403,6 +403,11 @@ class AuthController {
             });
         }
     }
+
+    // [GET] /api/auth/login
+    async loginPage(req, res) {
+        res.render('AuthView/login');
+    }
     
 }
 

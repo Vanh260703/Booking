@@ -55,7 +55,23 @@ async function sendVerifyAccount(toEmail, verifyLink) {
     return transporter.sendMail(mailOptions);
 }
 
-module.exports = { sendResetPassword, sendVerifyAccount };
+// Gửi mail thông báo mật khẩu đã được thay đổi
+async function sendNotificationChangePassword(toEmail, changePasswordTime, recoverLink) {
+    const mailOptions = {
+        form: `BOOKING HOTEL <${process.env.EMAIL_USER}>`,
+        to: toEmail,
+        subject: 'Thông báo về việc thay đổi mật khẩu',
+        html: `
+            <p>Chào bạn,</p>
+            <p>Tài khoản của bạn vừa được thay đổi mật khẩu vào: ${changePasswordTime}. Nếu không phải bạn, hãy nhấn vào đường link bên dưới để có thể lấy lại mật khẩu bằng gmail!</p>
+            <a href="${recoverLink}">${recoverLink}</a>
+        `
+    }
+
+    return transporter.sendMail(mailOptions);
+}
+
+module.exports = { sendResetPassword, sendVerifyAccount, sendNotificationChangePassword };
 
 
 

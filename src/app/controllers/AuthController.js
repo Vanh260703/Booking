@@ -256,7 +256,7 @@ class AuthController {
                     error: err.message,
                 });
             }
-            const user = await User.findById(decode.userID);
+            const user = await User.findById(decoded.userID);
             if (!user) {
                 return res.status(400).json({
                     success: false,

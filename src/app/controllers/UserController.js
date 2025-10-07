@@ -167,7 +167,7 @@ class UserController {
     async users(req, res) {
         try {
             const users = await User.find({role: 'user'}).select('name username email role gender phone isVerify federated_credentials').lean();
-            if (!users) {
+            if (!users.length) {
                 return res.status(401).json({
                     success: false,
                     message: 'Lấy danh sách người dùng thất bại!',
@@ -211,7 +211,7 @@ class UserController {
                 message: 'Cập nhật role thành công!',
                 user,
             });
-            
+
         } catch (err) {
             console.log(err);
             return res.status(500).json({

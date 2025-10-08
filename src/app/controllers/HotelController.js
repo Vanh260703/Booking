@@ -1,5 +1,8 @@
 const User = require('../models/User');
 const Hotel = require('../models/Hotel');
+const Room = require('../models/Room');
+const slugify = require('slugify');
+
 
 class HotelController {
 
@@ -106,6 +109,70 @@ class HotelController {
                 success: true,
                 message: 'Lấy danh sách khách sạn nổi bật thành công!',
                 featuredHotels,
+            });
+        } catch (err) {
+            console.log(err);
+            return res.status(500).json({
+                success: false,
+                message: 'Lỗi phía server',
+                error: err.message,
+            });
+        }
+    }
+
+    // [GET] /api/hotels/:id/available-rooms
+    async availableRooms(req, res) {
+        try {
+            const hotelID = req.params.id;
+            const rooms = await Room.find({ hotel: hotelID, status: 'available' }).lean();
+
+            if (!rooms.length) {
+                return res.status(401).json({
+                    success: false,
+                    message: 'Lấy danh sách phòng thất bại!',
+                    rooms: [],
+                });
+            }
+
+            return res.status(200).json({
+                success: true,
+                message: 'Lấy danh sách phòng thành công!',
+                rooms,
+            });
+        } catch (err) {
+            console.log(err);
+            return res.status(500).json({
+                success: false,
+                message: 'Lỗi phía server',
+                error: err.message,
+            });
+        }
+    }
+
+    // [POST] /api/hotels
+    async createHotel(req, res) {
+        try {
+            const newHotel = new Hotel(req.body);
+            const exisingHotel = await Hotel.findOne({ name: newHotel.name }).lean();
+
+            if (exisingHotel) {
+                return res.status(401).json({
+                    success: false,
+                    message: 'Khách sạn đã tồn tại. Vui lòng kiểm tra lại!',
+                });
+            }
+
+            // Tạo slug
+            const slug = slugify(newHotel.name, {
+                replacement: '-',
+                lower: true,
+                locale: 'vi',
+                strict: true,
+            });
+
+            return res.status(200).json({
+                success: true,
+                message: 'Tạo khách sạn thành công!',
             });
         } catch (err) {
             console.log(err);

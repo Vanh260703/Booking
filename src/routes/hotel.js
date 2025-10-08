@@ -11,4 +11,8 @@ router.get('/:id', hotelController.detailsHotel);
 
 router.get('/featured', hotelController.featuredHotels);
 
+router.get('/:id/available-rooms', hotelController.availableRooms);
+
+router.post('/', Authentication, AdminAuthentication, hotelController.createHotel);
+
 module.exports = router;

@@ -1,25 +1,26 @@
 const mongoose = require('mongoose');
 
-const AddressSchema = new mongoose.Schema({
-    recipientName: String,
-    addressLine: String,
-    city: String,
-    ward: String,
-    shortAddress: String,
-})
-
 const HotelSchema = mongoose.Schema(
     {
         name: {type: String, required: true},
         slug: {type: String, required: true},
         description: {type: String, required: true},
         shortDescription: String,
-        owner: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+        propertyType: {
+            type: String, 
+            enum: ['hotel', 'resort', 'apartment', 'villa', 'homestay', 'motel'],
+            required: true,
+        },
         images: {
             caption: String,
-            urls: [{type: String}],
+            url: String,
+            category: {type: String, enum: ['exterior', 'lobby', 'room', 'bathroom', 'dining', 'pool', 'gym', 'other']}
         },
-        address: AddressSchema,
+        location: {
+            city: {type: mongoose.Schema.Types.ObjectId, ref: 'City'},
+            ward: String,
+            shortAddress: String,
+        },
         contact: {
             phone: String,
             name: String,
@@ -27,6 +28,7 @@ const HotelSchema = mongoose.Schema(
         starRating: {
             type: Number, min: 1, max: 5
         },
+
         amenities: [{
             type: String,
             enum: [
@@ -42,7 +44,6 @@ const HotelSchema = mongoose.Schema(
             checkoutTime: {type: String, default: '12:00'},
         },
         paymentMethod: {type: String, enum: ['cash', 'momo', 'vnpay']},
-        isVerified: {type: Boolean, default: false},
         averageRating: {type: Number, min: 0, max: 5, default: 0},
         totalReviews: {type: Number, default: 0},
         viewCount: {type: Number, default: 0},

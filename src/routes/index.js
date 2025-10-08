@@ -1,6 +1,7 @@
 const authRouter = require('./auth');
 const userRouter = require('./user');
 const hotelRouter = require('./hotel');
+const cityRouter = require('./city');
 // const roomRouter = require('./room');
 // const bookingRouter = require('./booking');
 // const paymentRouter = require('./payment');
@@ -16,6 +17,9 @@ function route (app) {
 
     // routes/user.js
     app.use('/api/users', userRouter);
+
+    // routes/city.js
+    app.use('/api/cities', cityRouter);
 
     // // routes/hotel.js
     app.use('/api/hotels', hotelRouter);

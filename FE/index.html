@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Trang chủ</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#137fec",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+          },
+          fontFamily: {
+            "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
+          },
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+        },
+      },
+    }
+  </script>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark text-[#111418] dark:text-gray-200">
+  <div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+    <!-- TopNavBar -->
+    <header
+      class="sticky top-0 z-50 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
+      <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center gap-4 text-primary">
+            <span class="material-symbols-outlined text-3xl">maps_home_work</span>
+            <h2 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">BookingHotels
+            </h2>
+          </div>
+          <nav class="hidden md:flex items-center gap-9">
+            <a class="text-[#111418] dark:text-gray-200 text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary"
+              href="#">Khách sạn</a>
+            <a class="text-[#111418] dark:text-gray-200 text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary"
+              href="#">Ưu đãi</a>
+            <a class="text-[#111418] dark:text-gray-200 text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary"
+              href="#">Lịch đặt của tôi</a>
+          </nav>
+          <div class="flex items-center gap-2">
+            <button id="loginBtn"
+              class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em]">
+              <span class="truncate">Đăng nhập</span>
+            </button>
+            <button id="registerBtn"
+              class="hidden sm:flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-gray-200 dark:bg-gray-700 text-[#111418] dark:text-white text-sm font-bold leading-normal tracking-[0.015em]">
+              <span class="truncate">Đăng ký</span>
+            </button>
+            <button
+              class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-gray-200 dark:bg-gray-700 text-[#111418] dark:text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+              <span class="material-symbols-outlined">language</span>
+            </button>
+          </div>
+        </div>
+    </header>
+    <main class="flex-grow">
+      <!-- Hero Section with Search Bar -->
+      <div class="@container relative">
+        <div class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat items-center justify-center p-4"
+          data-alt="A beautiful tropical beach with turquoise water and palm trees"
+          style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBNWEM_VbLeHHnyu36jTtXpuF4KZx9iTCxhUUQ5Z3mr_BAur6BbeKaQS3N6HiD7mGm3w_YB1XBN7FSyEozEaNc0L44UGviUmsgSzoZeaybLoEe8zcEDEsS7CJiJRWH_yMOVqhinlZRkdlH3z4yOMX71jWwg2RE-Tp1Yp_KLkSmtjjaCuBeFw4s7biVo4FbTkO8KwcKSJ90RYjN_6h_N5zSVJCtJUQNeImXx-kA8ubNzlEiotiBYQBrEmBikc8EnnFHAeT2lxwlryBk");'>
+          <div class="flex flex-col gap-4 text-center text-white max-w-3xl">
+            <h1 class="text-4xl font-black leading-tight tracking-tight sm:text-5xl md:text-6xl">
+              Tìm kiếm kỳ nghỉ hoàn hảo tiếp theo của bạn
+            </h1>
+            <h2 class="text-base font-normal leading-normal sm:text-lg">
+              Khám phá những khách sạn tuyệt vời và đặt phòng một cách dễ dàng.
+            </h2>
+          </div>
+          <div
+            class="mt-6 w-full max-w-4xl p-4 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-sm rounded-xl shadow-lg">
+            <div class="grid grid-cols-1 gap-4">
+              <!-- Row 1: Điểm đến (full width) -->
+              <div>
+                <label class="flex flex-col w-full">
+                  <p class="text-[#111418] dark:text-gray-200 text-sm font-medium leading-normal pb-2">Điểm đến</p>
+                  <div class="relative">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
+                    <input id="search" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary border-none bg-gray-200 dark:bg-gray-700 h-14 placeholder:text-[#617589] dark:placeholder:text-gray-400 pl-10 p-4 text-base font-normal leading-normal" placeholder="Điểm đến, khách sạn, hoặc địa chỉ" value="" autocomplete="off"/>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Row 2: Ngày nhận | Ngày trả | Khách & Phòng -->
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+                <label class="flex flex-col">
+                  <p class="text-[#111418] dark:text-gray-200 text-sm font-medium leading-normal pb-2">Ngày nhận</p>
+                  <div class="relative">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">calendar_month</span>
+                    <input id="checkin" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary border-none bg-gray-200 dark:bg-gray-700 h-14 placeholder:text-[#617589] dark:placeholder:text-gray-400 pl-10 p-4 text-base font-normal leading-normal" placeholder="Chọn ngày nhận" type="date" value="" />
+                  </div>
+                </label>
+
+                <label class="flex flex-col">
+                  <p class="text-[#111418] dark:text-gray-200 text-sm font-medium leading-normal pb-2">Ngày trả</p>
+                  <div class="relative">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">calendar_month</span>
+                    <input id="checkout" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary border-none bg-gray-200 dark:bg-gray-700 h-14 placeholder:text-[#617589] dark:placeholder:text-gray-400 pl-10 p-4 text-base font-normal leading-normal" placeholder="Chọn ngày trả" type="date" value="" />
+                  </div>
+                </label>
+
+                <div class="col-span-1">
+                  <p class="text-[#111418] dark:text-gray-200 text-sm font-medium leading-normal pb-2">Khách & Phòng</p>
+                  <div id="guestsToggle" class="relative inline-block w-full md:w-full">
+                    <button id="guestsBtn" type="button" class="flex w-full items-center justify-between rounded-lg bg-gray-200 dark:bg-gray-700 h-14 px-4 text-[#111418] dark:text-white focus:outline-none focus:ring-2 focus:ring-primary">
+                      <span id="guestsSummary" class="truncate text-sm">1 Phòng · 2 Người lớn · 0 Trẻ em</span>
+                      <span class="material-symbols-outlined ml-3 text-gray-500">expand_more</span>
+                    </button>
+
+                    <!-- dropdown (kept same ids/structure) -->
+                    <div id="guestsDropdown" class="absolute right-0 mt-2 w-full md:w-64 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg overflow-hidden"
+                         style="transform: translateY(-6px) scale(.98); opacity:0; max-height:0; transition: transform 200ms cubic-bezier(.2,.9,.28,1), opacity 200ms ease, max-height 260ms cubic-bezier(.2,.9,.28,1);">
+                      <div class="p-3">
+                        <div class="flex items-center justify-between py-2">
+                          <div>
+                            <div class="text-sm font-medium text-[#111418] dark:text-white">Phòng</div>
+                            <div class="text-xs text-gray-500 dark:text-gray-400">Số phòng</div>
+                          </div>
+                          <div class="flex items-center gap-2">
+                            <button data-role="rooms-decr" class="h-8 w-8 rounded-md bg-gray-100 dark:bg-gray-700 text-[#111418] dark:text-white disabled:opacity-50">-</button>
+                            <div id="roomsCount" class="w-8 text-center text-sm font-medium">1</div>
+                            <button data-role="rooms-incr" class="h-8 w-8 rounded-md bg-gray-100 dark:bg-gray-700 text-[#111418] dark:text-white">+</button>
+                          </div>
+                        </div>
+
+                        <div class="flex items-center justify-between py-2">
+                          <div>
+                            <div class="text-sm font-medium text-[#111418] dark:text-white">Người lớn</div>
+                            <div class="text-xs text-gray-500 dark:text-gray-400">Từ 18 tuổi trở lên</div>
+                          </div>
+                          <div class="flex items-center gap-2">
+                            <button data-role="adults-decr" class="h-8 w-8 rounded-md bg-gray-100 dark:bg-gray-700 text-[#111418] dark:text-white disabled:opacity-50">-</button>
+                            <div id="adultsCount" class="w-8 text-center text-sm font-medium">2</div>
+                            <button data-role="adults-incr" class="h-8 w-8 rounded-md bg-gray-100 dark:bg-gray-700 text-[#111418] dark:text-white">+</button>
+                          </div>
+                        </div>
+
+                        <div class="flex items-center justify-between py-2">
+                          <div>
+                            <div class="text-sm font-medium text-[#111418] dark:text-white">Trẻ em</div>
+                            <div class="text-xs text-gray-500 dark:text-gray-400">0-17 tuổi</div>
+                          </div>
+                          <div class="flex items-center gap-2">
+                            <button data-role="kids-decr" class="h-8 w-8 rounded-md bg-gray-100 dark:bg-gray-700 text-[#111418] dark:text-white disabled:opacity-50">-</button>
+                            <div id="kidsCount" class="w-8 text-center text-sm font-medium">0</div>
+                            <button data-role="kids-incr" class="h-8 w-8 rounded-md bg-gray-100 dark:bg-gray-700 text-[#111418] dark:text-white">+</button>
+                          </div>
+                        </div>
+
+                        <div class="mt-3 flex justify-end">
+                          <button id="guestsApply" class="px-4 py-2 rounded-lg bg-primary text-white text-sm">Áp dụng</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row 3: Search button (full width) -->
+              <div>
+                <button id="doSearch" class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em]">
+                  <span class="truncate">Tìm kiếm</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Special Offers Section -->
+      <section class="container mx-auto px-4 py-12">
+        <h2 class="text-[#111418] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] pb-5">Ưu đãi
+          đặc biệt</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div
+            class="flex flex-col bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
+            <div class="relative">
+              <div class="bg-center bg-no-repeat aspect-[4/3] bg-cover" data-alt="Luxury hotel room with a seaside view"
+                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC9vsxTzcbOBrWVEbD740iTddF7v6WFVOtRHrC1EOmG9HtaS5Q1x4YSdSwwbyJI_DYJatDqWdD7PjAjnHn493jl54cGu20gdltWIsDo-Z5_CE3LF4-xSlQUyJ0KJL10K9haqNZ__L3a_kcX7bIhrD4E6Y350rFblp86WmT32h0rYxEfSClz3JjxWAfx9NNNsnnPqVXiOKlT7zmKJFKs5ZJf4KwwLdx7klILF4MTW3tWJmo322CnH4rt1HFF4WLFjJecOKSAZ09f6-0");'>
+              </div>
+              <div class="absolute top-3 right-3 bg-[#FF6B6B] text-white text-xs font-bold px-2 py-1 rounded-full">-20%
+              </div>
+            </div>
+            <div class="p-4 flex flex-col flex-grow">
+              <h3 class="text-lg font-bold text-[#111418] dark:text-white">Seaside Resort &amp; Spa</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Đà Nẵng, Việt Nam</p>
+              <div class="mt-auto pt-4">
+                <p class="text-gray-600 dark:text-gray-300"><span
+                    class="text-xl font-bold text-primary">2.500.000₫</span> / đêm</p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex flex-col bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
+            <div class="relative">
+              <div class="bg-center bg-no-repeat aspect-[4/3] bg-cover" data-alt="Modern city hotel exterior at night"
+                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC7N2AGaETwQbggrKbkn3rqLp-p-2_VnRmAHuTp9-jc6gD97F9sLcwS0a7Huq2aeGJBKC25OEkYU3uq8ajst8Abzj5Prvo5CtOUtECb39ctoTSNnJbfsX56y7gL0wf7CnLqoM1FFOWyG3y8bx1Or80PlxZyeErTVsqL11oifpekTrWJsbqPqiUUu4GGu_xRyp89ncbwa9yL73hhxIqp_tGdWjXp8LbO-hRKvvsAd7WAZm61eJkqrUbONaWDVd-7wrptATM5UV_j-UQ");'>
+              </div>
+              <div class="absolute top-3 right-3 bg-[#FF6B6B] text-white text-xs font-bold px-2 py-1 rounded-full">-15%
+              </div>
+            </div>
+            <div class="p-4 flex flex-col flex-grow">
+              <h3 class="text-lg font-bold text-[#111418] dark:text-white">Urban Heights Hotel</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">TP. Hồ Chí Minh, Việt Nam</p>
+              <div class="mt-auto pt-4">
+                <p class="text-gray-600 dark:text-gray-300"><span
+                    class="text-xl font-bold text-primary">1.800.000₫</span> / đêm</p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex flex-col bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
+            <div class="relative">
+              <div class="bg-center bg-no-repeat aspect-[4/3] bg-cover" data-alt="Cozy hotel lobby with a fireplace"
+                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDCYdWu2DUIoYFJEZp88tsHOZ5xYJXqgxUhw2swi5M75noUQnGD2w2O42-FydJ4rXpmFUX-cIL5oCJ5j7aVwko_EQfxYe5JBoxv-lJz6szqT4DWe5kaepDVdfdm_ZYNDh2YyubAQT5sixErxcj-gSugSvfF5gebN5t_d4Q6u-ZLLIR-l0jRWrX4UtfHe3hrrPKVFsfnoEUCiRVrqG3dtrbDedsbZGWXavbyfZPV1f0zd1I8i45tNrmflb2Ug0XwA0pIP5ec3E2vDU0");'>
+              </div>
+              <div class="absolute top-3 right-3 bg-[#FF6B6B] text-white text-xs font-bold px-2 py-1 rounded-full">-30%
+              </div>
+            </div>
+            <div class="p-4 flex flex-col flex-grow">
+              <h3 class="text-lg font-bold text-[#111418] dark:text-white">The Cozy Corner</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Hà Nội, Việt Nam</p>
+              <div class="mt-auto pt-4">
+                <p class="text-gray-600 dark:text-gray-300"><span
+                    class="text-xl font-bold text-primary">1.200.000₫</span> / đêm</p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex flex-col bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
+            <div class="relative">
+              <div class="bg-center bg-no-repeat aspect-[4/3] bg-cover"
+                data-alt="Mountain lodge with a view of snowy peaks"
+                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCK5h6OZaJ6R7TOgEP1eaYEQTv1Tb7jCUhlLNdN0w076uLLxXDr1WrEfhBNHJh26_9rk7LsF7ypG36YylN_nhPxnCTVwNxbUNPGn3TVqpRj9aX7kH1bY9Icx3IyoE8OE6YvB3qTzre931m_HHcvGZGYbYuSYkn15KSIzeFq4goMSmQK66D5tmwEA6ne_T4L9_O27esQ52sji47wt-gCBH4pKC7Yrsslu6ceFfxzGcaLk2EvX42s6tfT_mrBT5Kwo6rdBvMEx7MP3ac");'>
+              </div>
+              <div class="absolute top-3 right-3 bg-[#FF6B6B] text-white text-xs font-bold px-2 py-1 rounded-full">-10%
+              </div>
+            </div>
+            <div class="p-4 flex flex-col flex-grow">
+              <h3 class="text-lg font-bold text-[#111418] dark:text-white">Mountain View Lodge</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Sa Pa, Việt Nam</p>
+              <div class="mt-auto pt-4">
+                <p class="text-gray-600 dark:text-gray-300"><span
+                    class="text-xl font-bold text-primary">3.100.000₫</span> / đêm</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Popular Destinations Section -->
+      <section class="container mx-auto px-4 py-12">
+        <h2 class="text-[#111418] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] pb-5">Khám phá
+          các điểm đến phổ biến</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="relative rounded-xl overflow-hidden aspect-square sm:aspect-[4/3] group">
+            <div
+              class="absolute inset-0 bg-center bg-cover bg-no-repeat transition-transform duration-500 ease-in-out group-hover:scale-110"
+              data-alt="Ha Long Bay with its iconic limestone karsts"
+              style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB3MocPkQKuLh2ZOX1i_VlDGI2R2iGeCaVbpvU9gSU67d-fGq1C_aSUhV3Y02-sKLdsd8RENn9vliLSdjTIlZO3bab2mELZZCPEykUL7fULgfAbuMeXznL2uRfsKu1El6ib2OhMMknMNNsRtzbW47q8um_kUEJjP8DnuUEMIsmc0IrDyna34sNxy5dFDPhqwJjhFkMpsHmnuzu9fAIPTfaKALNBnkb8tTe9nY9JbC25mG18EoMbs9ZSAufA9EgAcJa2daxCC45KZug");'>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 p-6">
+              <h3 class="text-white text-2xl font-bold">Hà Nội</h3>
+            </div>
+          </div>
+          <div class="relative rounded-xl overflow-hidden aspect-square sm:aspect-[4/3] group">
+            <div
+              class="absolute inset-0 bg-center bg-cover bg-no-repeat transition-transform duration-500 ease-in-out group-hover:scale-110"
+              data-alt="My Khe Beach in Da Nang with the city skyline"
+              style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDIvUXWOIa_d2CVClZ1WLsIcWQlEUfBrI_3EdAMi4ectAUKrZppH5FNP81eanh7kr71-mPPhMBzATrogQYeHk8QJ3tHsiQaiTPggnBjpCeeuFCFWkgMKUobNFoO-3gXtX5tXTn0gyBsEy2oeWl2lVBrnF-HNCWtZoIGYoANpCVb5N4bUUr3D1okbGoNA_0jnRi46wqLadLlI8VLx_1y6rIM4939Wwq93HBnfqzcyEDea3CKdntQNmTUelv9IEdHeAPgfSv44kljlxw");'>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 p-6">
+              <h3 class="text-white text-2xl font-bold">Đà Nẵng</h3>
+            </div>
+          </div>
+          <div class="relative rounded-xl overflow-hidden aspect-square sm:aspect-[4/3] group">
+            <div
+              class="absolute inset-0 bg-center bg-cover bg-no-repeat transition-transform duration-500 ease-in-out group-hover:scale-110"
+              data-alt="Ho Chi Minh City skyline at night with Landmark 81"
+              style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCVW_3ANapUS51KLhhTAUkV5gVtJ8XCtTcsd-uyOwXtk-b7AI_xX7NwQHcGJDkhFfb79cDE0mOvm47qAVV2hMJR_jye_H1Hj3nQrLZHk8G4Lp_kKqP_4nkQ8e78V0Y_rNSdmBbC4ZKJeSCYkNpi4D7YvKm7cf1_aCM4MrHaHiGjXmPLjihvr_daZmri2ssKjnS4UlGQ5NA83_whZgaOC6Uuclg1lwjSYLrQ5xRi2LBalyrgfqNwKHO8cLNDUk-zl4IuM8S5VxcgZts");'>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 p-6">
+              <h3 class="text-white text-2xl font-bold">TP. Hồ Chí Minh</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Why Choose Us Section -->
+      <section class="bg-white dark:bg-gray-800 py-12">
+        <div class="container mx-auto px-4">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div class="flex flex-col items-center">
+              <div class="flex items-center justify-center size-12 bg-primary/20 rounded-full mb-4">
+                <span class="material-symbols-outlined text-primary text-3xl">verified</span>
+              </div>
+              <h3 class="text-lg font-bold text-[#111418] dark:text-white">Đảm bảo giá tốt nhất</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Chúng tôi cam kết cung cấp giá cạnh tranh nhất
+                cho kỳ nghỉ của bạn.</p>
+            </div>
+            <div class="flex flex-col items-center">
+              <div class="flex items-center justify-center size-12 bg-primary/20 rounded-full mb-4">
+                <span class="material-symbols-outlined text-primary text-3xl">support_agent</span>
+              </div>
+              <h3 class="text-lg font-bold text-[#111418] dark:text-white">Hỗ trợ 24/7</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Đội ngũ hỗ trợ của chúng tôi luôn sẵn sàng giúp
+                đỡ bạn bất cứ lúc nào.</p>
+            </div>
+            <div class="flex flex-col items-center">
+              <div class="flex items-center justify-center size-12 bg-primary/20 rounded-full mb-4">
+                <span class="material-symbols-outlined text-primary text-3xl">credit_card</span>
+              </div>
+              <h3 class="text-lg font-bold text-[#111418] dark:text-white">Thanh toán an toàn</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Thanh toán với các phương thức an toàn và phổ
+                biến nhất thế giới.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-gray-200 dark:bg-gray-900">
+      <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h3 class="font-bold text-lg text-[#111418] dark:text-white">BookingHotels</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Nền tảng đặt phòng khách sạn hàng đầu của bạn.</p>
+          </div>
+          <div>
+            <h4 class="font-semibold text-[#111418] dark:text-white">Về chúng tôi</h4>
+            <ul class="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
+              <li><a class="hover:text-primary" href="#">Giới thiệu</a></li>
+              <li><a class="hover:text-primary" href="#">Liên hệ</a></li>
+              <li><a class="hover:text-primary" href="#">FAQ</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-[#111418] dark:text-white">Chính sách</h4>
+            <ul class="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
+              <li><a class="hover:text-primary" href="#">Điều khoản dịch vụ</a></li>
+              <li><a class="hover:text-primary" href="#">Chính sách bảo mật</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-[#111418] dark:text-white">Theo dõi chúng tôi</h4>
+            <div class="flex mt-4 space-x-4 text-gray-600 dark:text-gray-400">
+              <a class="hover:text-primary text-2xl" href="#">
+                <!-- Placeholder for social icon, e.g. FontAwesome -->
+                <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
+                  <path clip-rule="evenodd"
+                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                    fill-rule="evenodd"></path>
+                </svg>
+              </a>
+              <a class="hover:text-primary text-2xl" href="#">
+                <!-- Placeholder for social icon, e.g. FontAwesome -->
+                <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
+                  <path
+                    d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84">
+                  </path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="mt-8 border-t border-gray-300 dark:border-gray-700 pt-4 text-center text-sm text-gray-500 dark:text-gray-400">
+          <p>© 2024 BookingHotels. Mọi quyền được bảo lưu.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const res = await fetch('http://localhost:3000/api/auth/me', {
+          method: 'GET',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' }
+        });
+        if (!res.ok) return;
+        const payload = await res.json();
+        const user = payload.user || payload;
+        console.log(user);
+        if (!user) return;
+
+        const header = document.querySelector('header');
+        if (!header) return;
+
+        // remove auth buttons
+        header.querySelectorAll('button, a').forEach(el => {
+          const txt = (el.textContent || '').trim().toLowerCase();
+          if (/đăng nhập|đăng ký/.test(txt)) el.remove();
+        });
+
+        // create user menu container
+        const menuWrap = document.createElement('div');
+        menuWrap.id = 'user-menu-wrap';
+        menuWrap.className = 'relative ml-3';
+        // button (avatar)
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.id = 'user-menu-btn';
+        btn.className = 'flex items-center gap-2 rounded-full focus:outline-none focus:ring-2 focus:ring-primary';
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-haspopup', 'true');
+
+        const avatarUrl = user.avatar || user.photo || '';
+        if (avatarUrl) {
+          const img = document.createElement('img');
+          img.src = avatarUrl;
+          img.alt = user.name || user.username || 'Tài khoản';
+          img.className = 'h-9 w-9 rounded-full object-cover';
+          btn.appendChild(img);
+        } else {
+          const ic = document.createElement('span');
+          ic.className = 'material-symbols-outlined text-3xl text-gray-700 dark:text-white';
+          ic.textContent = 'account_circle';
+          btn.appendChild(ic);
+        }
+
+        menuWrap.appendChild(btn);
+
+        // menu (hidden by default)
+        const menu = document.createElement('div');
+        menu.id = 'user-menu';
+        menu.className = 'origin-top-right absolute right-0 mt-3 w-56 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg overflow-hidden';
+        // initial hidden styles for smooth slide
+        menu.style.transform = 'translateY(-6px) scale(0.98)';
+        menu.style.opacity = '0';
+        menu.style.maxHeight = '0';
+        menu.style.overflow = 'hidden';
+        menu.style.transition = 'transform 220ms cubic-bezier(.2,.9,.28,1), opacity 220ms ease, max-height 260ms cubic-bezier(.2,.9,.28,1)';
+        menu.setAttribute('aria-hidden', 'true');
+
+        // menu content
+        menu.innerHTML = `
+      <div class="py-2">
+        <div class="px-4 py-2 border-b border-gray-100 dark:border-gray-700">
+          <div class="text-sm font-medium text-gray-900 dark:text-white">${user.name || user.username}</div>
+          <div class="text-xs text-gray-500 dark:text-gray-400">${user.email || ''}</div>
+        </div>
+
+        <a href="/points" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700">Xem điểm tích luỹ</a>
+        <a href="/bookings" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700">Xem bookings</a>
+        <a href="/coupons" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700">Xem coupons</a>
+        <a href="/notifications" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700">Xem thông báo</a>
+        <a href="/FE/User/profile.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700">Xem profile</a>
+        <a href="/FE/User/change-password.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700">Đổi mật khẩu</a>
+
+        <button id="logoutBtn" class="w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-gray-50 dark:hover:bg-gray-700">Đăng xuất</button>
+      </div>
+    `;
+        menuWrap.appendChild(menu);
+
+        // append to header right side (or to header container)
+        // Place the avatar next to the language button group.
+        // Prefer the right-side button group (.flex.items-center.gap-2)
+        let rightGroup = header.querySelector('.flex.items-center.gap-2');
+        if (!rightGroup) {
+          // fallback: use the last .flex.items-center inside header
+          const flexItems = header.querySelectorAll('div.flex.items-center');
+          rightGroup = flexItems[flexItems.length - 1] || header;
+        }
+        // small spacing so
+        menuWrap.classList.add('ml-2');
+
+        rightGroup.appendChild(menuWrap);
+
+        // toggle logic
+        let open = false;
+        const openMenu = () => {
+          menu.style.maxHeight = '480px';
+          menu.style.transform = 'translateY(0) scale(1)';
+          menu.style.opacity = '1';
+          menu.setAttribute('aria-hidden', 'false');
+          btn.setAttribute('aria-expanded', 'true');
+          open = true;
+          // optional focus first link
+          const firstLink = menu.querySelector('a, button');
+          if (firstLink) firstLink.focus();
+        };
+        const closeMenu = () => {
+          menu.style.maxHeight = '0';
+          menu.style.transform = 'translateY(-6px) scale(0.98)';
+          menu.style.opacity = '0';
+          menu.setAttribute('aria-hidden', 'true');
+          btn.setAttribute('aria-expanded', 'false');
+          open = false;
+        };
+
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (open) closeMenu();
+          else openMenu();
+        });
+
+        // close when clicking outside
+        document.addEventListener('click', (ev) => {
+          if (!menuWrap.contains(ev.target)) closeMenu();
+        });
+
+        // close on Esc
+        document.addEventListener('keydown', (ev) => {
+          if (ev.key === 'Escape') closeMenu();
+        });
+
+        // logout handler
+        const logoutBtn = menu.querySelector('#logoutBtn');
+        logoutBtn.addEventListener('click', async (ev) => {
+          ev.preventDefault();
+          try {
+            await fetch('http://localhost:3000/api/auth/logout', {
+              method: 'POST',
+              credentials: 'include',
+              headers: { 'Content-Type': 'application/json' },
+            });
+          } catch (e) {
+            console.error('Logout error', e);
+          } finally {
+            // reload so server-side cookie cleared state is reflected
+            window.location.reload();
+          }
+        });
+
+      } catch (err) {
+        console.error('checkAuth error:', err);
+      }
+    });
+
+    // Login redirect
+    document.getElementById('loginBtn').addEventListener('click', () => {
+      window.location.href = "http://localhost:5500/FE/Auth/login.html";
+    });
+
+    // Register redirect
+    document.getElementById('registerBtn').addEventListener('click', () => {
+      window.location.href = "http://localhost:5500/FE/Auth/register.html";
+    });
+
+  </script>
+  <script>
+  (function () {
+    const guestsBtn = document.getElementById('guestsBtn');
+    const guestsDropdown = document.getElementById('guestsDropdown');
+    const guestsSummary = document.getElementById('guestsSummary');
+    const guestsApply = document.getElementById('guestsApply');
+
+    const roomsCountEl = document.getElementById('roomsCount');
+    const adultsCountEl = document.getElementById('adultsCount');
+    const kidsCountEl = document.getElementById('kidsCount');
+
+    // initial values
+    let state = { rooms: 1, adults: 2, kids: 0 };
+
+    function updateSummary() {
+      guestsSummary.textContent = `${state.rooms} Phòng · ${state.adults} Người lớn · ${state.kids} Trẻ em`;
+      // disable min buttons
+      document.querySelector('[data-role="rooms-decr"]').disabled = state.rooms <= 1;
+      document.querySelector('[data-role="adults-decr"]').disabled = state.adults <= 1;
+      document.querySelector('[data-role="kids-decr"]').disabled = state.kids <= 0;
+    }
+
+    // toggle drop
+    let open = false;
+    function openDropdown() {
+      guestsDropdown.style.maxHeight = '420px';
+      guestsDropdown.style.transform = 'translateY(0) scale(1)';
+      guestsDropdown.style.opacity = '1';
+      open = true;
+    }
+    function closeDropdown() {
+      guestsDropdown.style.maxHeight = '0';
+      guestsDropdown.style.transform = 'translateY(-6px) scale(.98)';
+      guestsDropdown.style.opacity = '0';
+      open = false;
+    }
+
+    guestsBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      open ? closeDropdown() : openDropdown();
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!document.getElementById('guestsToggle').contains(e.target)) closeDropdown();
+    });
+
+    // button handlers
+    document.querySelectorAll('[data-role]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const role = btn.getAttribute('data-role');
+        if (role === 'rooms-incr') state.rooms++;
+        if (role === 'rooms-decr' && state.rooms > 1) state.rooms--;
+        if (role === 'adults-incr') state.adults++;
+        if (role === 'adults-decr' && state.adults > 1) state.adults--;
+        if (role === 'kids-incr') state.kids++;
+        if (role === 'kids-decr' && state.kids > 0) state.kids--;
+        roomsCountEl.textContent = state.rooms;
+        adultsCountEl.textContent = state.adults;
+        kidsCountEl.textContent = state.kids;
+        updateSummary();
+      });
+    });
+
+    guestsApply.addEventListener('click', () => {
+      closeDropdown();
+    });
+
+    // update initial UI
+    updateSummary();
+
+    const q = document.getElementById('search');
+      q.addEventListener('click', async () => {
+          const res = await fetch('http://localhost:3000/api/search', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+
+          const data = await res.json();
+          console.log(data);
+      })
+
+
+    // search behaviour (example: build query and navigate)
+    document.getElementById('doSearch').addEventListener('click', () => {
+      const checkin = document.getElementById('checkin').value;
+      const checkout = document.getElementById('checkout').value;
+      // const params = new URLSearchParams({
+      //   q,
+      //   checkin,
+      //   checkout,
+      //   rooms: state.rooms,
+      //   adults: state.adults,
+      //   kids: state.kids
+      // });
+      const rooms = state.rooms;
+      const adults = state.adults;
+      const kids = state.kids;
+
+      const formData = {
+
+      }
+    });
+  })();
+  </script>
+</body>
+
+</html>

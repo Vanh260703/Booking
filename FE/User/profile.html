@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Trang Thông tin cá nhân người dùng</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark">
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <!-- TopNavBar -->
+            <header
+            class="sticky top-0 z-50 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
+            <div class="container mx-auto px-4">
+                <div class="flex items-center justify-between h-16">
+                <a href="../index.html" class="flex items-center gap-4 text-primary">
+                    <span class="material-symbols-outlined text-3xl">maps_home_work</span>
+                    <h2 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">
+                        BookingHotels
+                    </h2>
+                </a>
+                <nav class="hidden md:flex items-center gap-9">
+                    <a class="text-[#111418] dark:text-gray-200 text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary"
+                    href="#">Khách sạn</a>
+                    <a class="text-[#111418] dark:text-gray-200 text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary"
+                    href="#">Ưu đãi</a>
+                    <a class="text-[#111418] dark:text-gray-200 text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary"
+                    href="#">Lịch đặt của tôi</a>
+                </nav>
+                <div class="flex items-center gap-2">
+                    <button id="loginBtn"
+                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em]">
+                    <span class="truncate">Đăng nhập</span>
+                    </button>
+                    <button id="registerBtn"
+                    class="hidden sm:flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-gray-200 dark:bg-gray-700 text-[#111418] dark:text-white text-sm font-bold leading-normal tracking-[0.015em]">
+                    <span class="truncate">Đăng ký</span>
+                    </button>
+                    <button
+                    class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-gray-200 dark:bg-gray-700 text-[#111418] dark:text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+                    <span class="material-symbols-outlined">language</span>
+                    </button>
+                </div>
+                </div>
+            </header>
+            <main class="flex flex-1 justify-center py-5 px-4 sm:px-10">
+                <div class="layout-content-container flex flex-col w-full max-w-[960px] flex-1">
+                    <div class="flex flex-wrap justify-between gap-3 p-4">
+                        <h1
+                            class="text-[#111418] dark:text-white text-4xl font-black leading-tight tracking-[-0.033em] min-w-72">
+                            Thông tin cá nhân</h1>
+                    </div>
+                    <div class="flex flex-col gap-8 p-4">
+                        <div
+                            class="flex p-4 @container bg-white dark:bg-background-dark rounded-xl border border-gray-200 dark:border-white/10">
+                            <div
+                                class="flex w-full flex-col gap-4 @[520px]:flex-row @[520px]:justify-between @[520px]:items-center">
+                                <div class="flex gap-4 items-center">
+                                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full min-h-24 w-24 sm:min-h-32 sm:w-32 avatar"
+                                        data-alt="User avatar"
+                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA5-79cWynNAFYa-MWwQN9i5yHjH8YAhCevAIzRTpxbqJO0AQp4yUeQ5YZhOQ_e-xGdt2n0lOCpg0mvsUB4z6KESb07BQK7AO5WkWU3IXnzdKfRqA2POGja934XhpsLqwLsFt08l-S6ync4jB9iwhgbiIT-fygyA5Qdyfyc7xkleK5KYFlEnSZto3MoO37Q3A_fCEFndJBRPz-GTbLs0lz3YjyGgnhb74TgN-hYUqum1u7ltkc5ruAk6oT-dA40Z32tN-eT4fBGzE8");'>
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <p  
+                                            id="nameInTitle"
+                                            class="text-[#111418] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em]">
+                                            Trần Văn A</p>
+                                        <p
+                                            id="role"
+                                            class="text-[#617589] dark:text-white/60 text-base font-normal leading-normal">
+                                            Customer</p>
+                                    </div>
+                                </div>
+                                <button
+                                    id="changeAvatar"
+                                    class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#f0f2f4] dark:bg-white/10 text-[#111418] dark:text-white text-sm font-bold leading-normal tracking-[0.015em] w-full max-w-[480px] @[480px]:w-auto">
+                                    <span class="truncate">Thay đổi ảnh</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-background-dark p-4 sm:p-6 rounded-xl border border-gray-200 dark:border-white/10">
+                            <h2
+                                class="text-[#111418] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-0 pb-5 pt-1">
+                                Chi tiết hồ sơ</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
+                                <div class="flex flex-col">
+                                    <label class="flex flex-col w-full">
+                                        <p
+                                            class="text-[#111418] dark:text-white/90 text-base font-medium leading-normal pb-2">
+                                            Họ và tên</p>
+                                        <input
+                                            id="name" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#dbe0e6] dark:border-white/20 bg-white dark:bg-white/5 focus:border-primary h-12 placeholder:text-[#617589] p-[15px] text-base font-normal leading-normal"
+                                            value="Trần Văn A" name="name"/>
+                                    </label>
+                                </div>
+                                <div class="flex flex-col">
+                                    <label class="flex flex-col w-full">
+                                        <p
+                                            class="text-[#111418] dark:text-white/90 text-base font-medium leading-normal pb-2">
+                                            Email</p>
+                                        <div class="relative w-full">
+                                            <input
+                                                id="email" name="email" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#617589] dark:text-white/60 focus:outline-0 focus:ring-0 border border-[#dbe0e6] dark:border-white/20 bg-gray-50 dark:bg-white/10 h-12 placeholder:text-[#617589] p-[15px] pl-3 text-base font-normal leading-normal cursor-not-allowed"
+                                                readonly="" value="tranvana@email.com" />
+                                            <span
+                                                class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[#617589] dark:text-white/60 text-lg">lock</span>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="flex flex-col">
+                                    <label class="flex flex-col w-full">
+                                        <p
+                                            class="text-[#111418] dark:text-white/90 text-base font-medium leading-normal pb-2">
+                                            Số điện thoại</p>
+                                        <input
+                                            id="phone" name="phone" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#dbe0e6] dark:border-white/20 bg-white dark:bg-white/5 focus:border-primary h-12 placeholder:text-[#617589] p-[15px] text-base font-normal leading-normal"
+                                            value="0987654321" />
+                                    </label>
+                                </div>
+                                <div class="flex flex-col">
+                                    <p
+                                        class="text-[#111418] dark:text-white/90 text-base font-medium leading-normal pb-2">
+                                        Giới tính</p>
+                                    <div class="flex gap-4 h-12 items-center">
+                                        <label class="flex items-center gap-2 cursor-pointer">
+                                            <input checked=""
+                                                class="form-radio h-4 w-4 text-primary focus:ring-primary/50 border-gray-300 dark:border-white/30 dark:bg-transparent"
+                                                name="gender" value="male" type="radio" />
+                                            <span class="text-[#111418] dark:text-white/90 text-base">Nam</span>
+                                        </label>
+                                        <label class="flex items-center gap-2 cursor-pointer">
+                                            <input
+                                                class="form-radio h-4 w-4 text-primary focus:ring-primary/50 border-gray-300 dark:border-white/30 dark:bg-transparent"
+                                                name="gender" value="female" type="radio" />
+                                            <span class="text-[#111418] dark:text-white/90 text-base">Nữ</span>
+                                        </label>
+                                        <label class="flex items-center gap-2 cursor-pointer">
+                                            <input
+                                                class="form-radio h-4 w-4 text-primary focus:ring-primary/50 border-gray-300 dark:border-white/30 dark:bg-transparent"
+                                                name="gender" value="other" type="radio" />
+                                            <span class="text-[#111418] dark:text-white/90 text-base">Khác</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-end pt-8">
+                                <button
+                                    id="updateBtn"
+                                    disabled
+                                    class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed">
+                                    <span class="truncate">Cập nhật thông tin</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <!-- Footer -->
+            <footer class="bg-gray-200 dark:bg-gray-900">
+            <div class="container mx-auto px-4 py-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-bold text-lg text-[#111418] dark:text-white">BookingHotels</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Nền tảng đặt phòng khách sạn hàng đầu của bạn.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-[#111418] dark:text-white">Về chúng tôi</h4>
+                    <ul class="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                    <li><a class="hover:text-primary" href="#">Giới thiệu</a></li>
+                    <li><a class="hover:text-primary" href="#">Liên hệ</a></li>
+                    <li><a class="hover:text-primary" href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-[#111418] dark:text-white">Chính sách</h4>
+                    <ul class="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                    <li><a class="hover:text-primary" href="#">Điều khoản dịch vụ</a></li>
+                    <li><a class="hover:text-primary" href="#">Chính sách bảo mật</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-[#111418] dark:text-white">Theo dõi chúng tôi</h4>
+                    <div class="flex mt-4 space-x-4 text-gray-600 dark:text-gray-400">
+                    <a class="hover:text-primary text-2xl" href="#">
+                        <!-- Placeholder for social icon, e.g. FontAwesome -->
+                        <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
+                        <path clip-rule="evenodd"
+                            d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                            fill-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                    <a class="hover:text-primary text-2xl" href="#">
+                        <!-- Placeholder for social icon, e.g. FontAwesome -->
+                        <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24">
+                        <path
+                            d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84">
+                        </path>
+                        </svg>
+                    </a>
+                    </div>
+                </div>
+                </div>
+                <div
+                class="mt-8 border-t border-gray-300 dark:border-gray-700 pt-4 text-center text-sm text-gray-500 dark:text-gray-400">
+                <p>© 2024 BookingHotels. Mọi quyền được bảo lưu.</p>
+                </div>
+            </div>
+            </footer>
+        </div>
+    </div>
+    <script src="../script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Lưu trữ giá trị ban đầu
+        let originalData = {
+            name: '',
+            phone: '',
+            gender: ''
+        };
+
+        // Hàm kiểm tra có thay đổi không
+        function checkForChanges() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const gender = document.querySelector('input[name="gender"]:checked')?.value;
+            const updateBtn = document.getElementById('updateBtn');
+
+            const hasChanges = 
+                name !== originalData.name ||
+                phone !== originalData.phone ||
+                gender !== originalData.gender;
+
+            updateBtn.disabled = !hasChanges;
+        }
+
+        document.addEventListener('DOMContentLoaded', async (e) => {
+           const profile = await fetchWithRefresh('http://localhost:3000/api/users/me/profile');
+
+            if (!profile) return;
+
+            console.log("PROFILE: ", profile);
+            const user = profile.user;
+
+            const header = document.querySelector('header');
+        if (!header) return;
+
+        // remove auth buttons
+        header.querySelectorAll('button, a').forEach(el => {
+          const txt = (el.textContent || '').trim().toLowerCase();
+          if (/đăng nhập|đăng ký/.test(txt)) el.remove();
+        });
+
+        // create user menu container
+        const menuWrap = document.createElement('div');
+        menuWrap.id = 'user-menu-wrap';
+        menuWrap.className = 'relative ml-3';
+        // button (avatar)
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.id = 'user-menu-btn';
+        btn.className = 'flex items-center gap-2 rounded-full focus:outline-none focus:ring-2 focus:ring-primary';
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-haspopup', 'true');
+
+        const avatarUrl = user.avatar || user.photo || '';
+        if (avatarUrl) {
+          const img = document.createElement('img');
+          img.src = avatarUrl;
+          img.alt = user.name || user.username || 'Tài khoản';
+          img.className = 'h-9 w-9 rounded-full object-cover';
+          btn.appendChild(img);
+        } else {
+          const ic = document.createElement('span');
+          ic.className = 'material-symbols-outlined text-3xl text-gray-700 dark:text-white';
+          ic.textContent = 'account_circle';
+          btn.appendChild(ic);
+        }
+
+        menuWrap.appendChild(btn);
+
+        // menu (hidden by default)
+        const menu = document.createElement('div');
+        menu.id = 'user-menu';
+        menu.className = 'origin-top-right absolute right-0 mt-3 w-56 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg overflow-hidden';
+        // initial hidden styles for smooth slide
+        menu.style.transform = 'translateY(-6px) scale(0.98)';
+        menu.style.opacity = '0';
+        menu.style.maxHeight = '0';
+        menu.style.overflow = 'hidden';
+        menu.style.transition = 'transform 220ms cubic-bezier(.2,.9,.28,1), opacity 220ms ease, max-height 260ms cubic-bezier(.2,.9,.28,1)';
+        menu.setAttribute('aria-hidden', 'true');
+
+        // menu content
+        menu.innerHTML = `
+      <div class="py-2">
+        <div class="px-4 py-2 border-b border-gray-100 dark:border-gray-700">
+          <div class="text-sm font-medium text-gray-900 dark:text-white">${user.name || user.username}</div>
+          <div class="text-xs text-gray-500 dark:text-gray-400">${user.email || ''}</div>
+        </div>
+
+        <a href="/points" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700">Xem điểm tích luỹ</a>
+        <a href="/bookings" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700">Xem bookings</a>
+        <a href="/coupons" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700">Xem coupons</a>
+        <a href="/notifications" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700">Xem thông báo</a>
+        <a href="/FE/User/profile.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700">Xem profile</a>
+        <a href="/FE/User/change-password.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700">Đổi mật khẩu</a>
+
+        <button id="logoutBtn" class="w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-gray-50 dark:hover:bg-gray-700">Đăng xuất</button>
+      </div>
+    `;
+        menuWrap.appendChild(menu);
+
+        // append to header right side (or to header container)
+        // Place the avatar next to the language button group.
+        // Prefer the right-side button group (.flex.items-center.gap-2)
+        let rightGroup = header.querySelector('.flex.items-center.gap-2');
+        if (!rightGroup) {
+          // fallback: use the last .flex.items-center inside header
+          const flexItems = header.querySelectorAll('div.flex.items-center');
+          rightGroup = flexItems[flexItems.length - 1] || header;
+        }
+        // small spacing so
+        menuWrap.classList.add('ml-2');
+
+        rightGroup.appendChild(menuWrap);
+
+        // toggle logic
+        let open = false;
+        const openMenu = () => {
+          menu.style.maxHeight = '480px';
+          menu.style.transform = 'translateY(0) scale(1)';
+          menu.style.opacity = '1';
+          menu.setAttribute('aria-hidden', 'false');
+          btn.setAttribute('aria-expanded', 'true');
+          open = true;
+          // optional focus first link
+          const firstLink = menu.querySelector('a, button');
+          if (firstLink) firstLink.focus();
+        };
+        const closeMenu = () => {
+          menu.style.maxHeight = '0';
+          menu.style.transform = 'translateY(-6px) scale(0.98)';
+          menu.style.opacity = '0';
+          menu.setAttribute('aria-hidden', 'true');
+          btn.setAttribute('aria-expanded', 'false');
+          open = false;
+        };
+
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (open) closeMenu();
+          else openMenu();
+        });
+
+        // close when clicking outside
+        document.addEventListener('click', (ev) => {
+          if (!menuWrap.contains(ev.target)) closeMenu();
+        });
+
+        // close on Esc
+        document.addEventListener('keydown', (ev) => {
+          if (ev.key === 'Escape') closeMenu();
+        });
+
+        // logout handler
+        const logoutBtn = menu.querySelector('#logoutBtn');
+        logoutBtn.addEventListener('click', async (ev) => {
+          ev.preventDefault();
+          try {
+            await fetch('http://localhost:3000/api/auth/logout', {
+              method: 'POST',
+              credentials: 'include',
+              headers: { 'Content-Type': 'application/json' },
+            });
+          } catch (e) {
+            console.error('Logout error', e);
+          } finally {
+            window.location.href = "../Auth/login.html";
+          }
+        });
+
+            const avatars = document.querySelectorAll('.avatar');
+            const titleName = document.getElementById('nameInTitle');
+            const role = document.getElementById('role');
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const phone = document.getElementById('phone');
+
+            if (profile.success) {
+                avatars.forEach(avatar => {
+                    avatar.style.backgroundImage = `url("${profile.user.avatar}")`;
+                });
+
+                titleName.innerText = profile.user.name;
+                name.value = profile.user.name;
+                email.value = profile.user.email;
+                phone.value = profile.user.phone || '';
+                
+                // Set giới tính
+                const genderRadios = document.querySelectorAll('input[name="gender"]');
+                genderRadios.forEach(radio => {
+                    if (radio.value === profile.user.gender) {
+                        radio.checked = true;
+                    }
+                });
+
+                if (profile.role === 'user') role.innerText = 'Người dùng';
+                else if (profile.role === 'admin') role.innerText = 'Quản trị viên';
+                else if (profile.role === 'hotel_owner') role.innerText = 'Chủ khách sạn';
+
+                // Lưu giá trị ban đầu
+                originalData = {
+                    name: profile.user.name,
+                    phone: profile.user.phone || '',
+                    gender: profile.user.gender
+                };
+            }
+
+            // Thêm event listeners để kiểm tra thay đổi
+            name.addEventListener('input', checkForChanges);
+            phone.addEventListener('input', checkForChanges);
+            
+            const genderRadios = document.querySelectorAll('input[name="gender"]');
+            genderRadios.forEach(radio => {
+                radio.addEventListener('change', checkForChanges);
+            });
+
+            // Xử lý khi click nút cập nhật
+            document.getElementById('updateBtn').addEventListener('click', async () => {
+                const updatedData = {
+                    name: name.value,
+                    phone: phone.value,
+                    gender: document.querySelector('input[name="gender"]:checked')?.value
+                };
+
+                const res = await fetch('http://localhost:3000/api/users/me/profile', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(updatedData),
+                    credentials: 'include'
+                });
+
+                const data = await res.json();
+                console.log(data);
+                if (!data.success) {
+                    console.log('1234!!!')
+                    showToast('error', data.message);
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);
+                } else {
+                    console.log('1234!!!')
+                    showToast('success', data.message);
+                    originalData = { ...updatedData };
+                     setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);
+                }
+
+            });
+        });
+
+        // Thay đổi ảnh đại diện
+        document.getElementById('changeAvatar').addEventListener('click', (e) => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.name = 'avatar';
+            input.accept = 'image/*';
+
+            input.addEventListener('change', async () => {
+                const file = input.files[0];
+                if (!file) return;
+
+                const formData = new FormData();
+                formData.append('avatar', file);
+
+                try {
+                    const res = await fetch('http://localhost:3000/api/upload/avatar', {
+                        method: 'POST',
+                        body: formData,
+                        credentials: 'include'
+                    });
+
+                    const data = await res.json();
+                    
+                    if (!data.success) {
+                        showToast('error', data.message);
+                    } else {
+                        showToast('success', data.message);
+                        // Cập nhật ảnh mới
+                        const avatars = document.querySelectorAll('.avatar');
+                        avatars.forEach(avatar => {
+                            avatar.style.backgroundImage = `url("${data.user.avatar}")`;
+                        });
+                    }
+                } catch (error) {
+                    console.error('Lỗi upload ảnh:', error);
+                    showToast('error', 'Có lỗi xảy ra khi tải ảnh lên');
+                }
+            });
+
+            input.click();
+        });
+    </script>
+</body>
+</html>

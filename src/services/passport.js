@@ -25,10 +25,7 @@ async (accessToken, refreshToken, profile, cb) => {
           name: profile.displayName,
           email: profile.emails?.[0]?.value,
           isVerify: profile.emails?.[0]?.verified || false,
-          avatar: {
-            url: profile.photos[0].value,
-            publicId: profile.photos[0].value,
-          },
+          avatar: profile.photos[0].value,
           federated_credentials: [{
             provider: "google",
             subject: profile.id
@@ -64,10 +61,7 @@ async (accessToken, refreshToken, profile, cb) => {
       user = new User({
         name: profile.displayName,
         email,
-        avatar: {
-          url: profile.photos[0].value,
-          publicId: profile.photos[0].value,
-        },
+        avatar: profile.photos[0].value,
         federated_credentials: [{
             provider: "facebook",
             subject: profile.id

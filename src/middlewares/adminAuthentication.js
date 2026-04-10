@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 
 function AdminAuthentication(req, res, next) {
     const user = req.user;
+    console.log(user);
     if (user.role !== 'admin') {
         return res.status(403).json({
             success: false,

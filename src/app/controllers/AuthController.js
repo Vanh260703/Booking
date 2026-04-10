@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const { promisify } = require('util');
 const verifyJwt = promisify(jwt.verify);
 
-const { generateAccessToken, generateRefreshToken, generateResetPassword, generateVerifyToken } = require('../../services/generateToken');
+const { generateAccessToken, generateRefreshToken, generateResetPassword, generateVerifyToken } = require('../../utils/generateToken');
 const { sendResetPassword, sendVerifyAccount } = require('../../services/sendingEmail');
 const salt = 10;
 
@@ -12,26 +12,38 @@ class AuthController {
     // [POST] /api/auth/register
     async register(req, res) {
         try {
-            const user = new User(req.body);
+            const { username, email, password, confirmPassword, ...rest } = req.body;
             const exisingUser = await User.findOne({ 
                 $or: [
-                    { username: user.username }, 
-                    { email: user.email } 
+                    { username }, 
+                    { email } 
                 ]
             });
             if (exisingUser) {
                 return res.status(400).json({
                     success: false,
-                    message: 'Tên đăng nhập đã tồn tại, vui lòng nhập lại!',
+                    message: 'Tên đăng nhập & Email đã tồn tại, vui lòng nhập lại!',
                 });
             };
 
+            if (password !== confirmPassword) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'Mật khẩu xác nhận không khớp!'
+                });
+            }
+
             // hash password
-            const hashedPassword = await bcrypt.hash(user.password, salt);
-            user.password = hashedPassword;
+            const hashedPassword = await bcrypt.hash(password, salt);
 
             // Lưu người dùng vào database
-            await user.save();
+            await User.create({
+                username, 
+                email,
+                password: hashedPassword,
+                ...rest,
+                avatar: 'https://i0.wp.com/sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png?ssl=1' // avatar default
+            });
 
             return res.status(200).json({
                 success: true,
@@ -47,11 +59,59 @@ class AuthController {
         }
     }
 
+    // [POST] /api/auth/register-owner
+    async registerOwner(req, res) {
+        try {
+            const { name, username, email, password, phone, businessName } = req.body;
+            const exisingOwner = await User.findOne({
+                $or: [
+                    { email: email },
+                    { role: 'hotel_owner'}, 
+                ]
+            });
+
+            if (exisingOwner) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'Email này đã được đăng kí làm đối tác. Vui lòng kiểm tra lại!',
+                });
+            }
+
+            const newOwner = new User({
+                name,
+                username,
+                email,
+                role: 'hotel_owner',
+                phone,
+                isBusinessAccount: true,
+                businessName,
+            });
+
+            const hashedPassword = await bcrypt.hash(password, salt);
+            newOwner.password = hashedPassword;
+
+            await newOwner.save();
+
+            return res.status(200).json({
+                success: true,
+                message: 'Đăng kí làm đối tác thành công, quá trình xử lý có thể diễn ra trong 1 ngày!',
+                newOwner
+            });
+        } catch (err) {
+            console.log(err);
+            return res.status(500).json({
+                success: false,
+                message: 'Lỗi phía server',
+                error: err.message,
+            });
+        }
+    }
+
     // [POST] /api/auth/login
     async login(req, res) {
         try {
             const { username, password } = req.body;
-            const user = await User.findOne({username});
+            const user = await User.findOne({username, role: 'user'});
             if (!user) {
                 return res.status(400).json({
                     success: false,
@@ -67,21 +127,19 @@ class AuthController {
                 });
             }
 
-            // Tạo accessToken cho user
-            const accessToken = generateAccessToken({
+            const payload = {
                 id: user._id,
                 username: user.username,
                 name: user.name,
                 role: user.role,
-            });
+                avatar: user.avatar
+            }
+
+            // Tạo accessToken cho user
+            const accessToken = generateAccessToken(payload);
 
             // Tạo refreshToken cho user
-            const refreshToken = generateRefreshToken({
-                id: user._id,
-                username: user.username,
-                name: user.name,
-                role: user.role,
-            });
+            const refreshToken = generateRefreshToken(payload);
 
             // Set cookie
             res.cookie('accessToken', accessToken, {
@@ -103,7 +161,7 @@ class AuthController {
             return res.status(200).json({
                 success: true,
                 message: 'Đăng nhập thành công!',
-                user: { name: user.name, username: user.username, accessToken, refreshToken }
+                user: { name: user.name, username: user.username, role: user.role, avatar: user.avatar, accessToken, refreshToken }
             });
         } catch (err) {
             console.log(err);
@@ -111,6 +169,146 @@ class AuthController {
                 success: false,
                 message: 'Lỗi phía server',
                 error: err.message,
+            });
+        }
+    }
+
+    // [POST] /api/auth/login-admin
+    async loginAdmin(req, res) {
+        try {
+            const { username, password } = req.body;
+            const user = await User.findOne({ username }).lean();
+
+            if (!user) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'Không tìm thấy quản trị viên!',
+                });
+            }
+
+            if (user.role != 'admin') {
+                return res.status(400).json({
+                    success: false,
+                    message: 'sai tên đăng nhập hoặc mật khẩu!',
+                });
+            }
+
+            const passwordCorrect = await bcrypt.compare(password, user.password);
+            if (!passwordCorrect) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'sai tên đăng nhập hoặc mật khẩu!',
+                });
+            }
+
+            const payload = {
+                user: user._id,
+                role: user.role,
+                avatar: user.avatar || 'https://i0.wp.com/sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png?ssl=1'
+            };
+
+            const accessToken = generateAccessToken(payload);
+            const refreshToken = generateRefreshToken(payload);
+
+            console.log(accessToken);
+            // Set cookie
+            res.cookie('accessToken', accessToken, {
+                httpOnly: true,
+                secure: false,
+                sameSite: 'Lax',
+                path: '/',
+                maxAge: 24 * 60 * 60 * 1000 // 1 ngày
+            });
+
+            res.cookie('refreshToken', refreshToken, {
+                httpOnly: true,
+                secure: false,
+                sameSite: 'Lax',
+                path: '/',
+                maxAge: 7 * 24 * 60 * 60 * 1000 // 7 ngày
+            });
+
+            return res.status(200).json({
+                success: true,
+                message: 'Đăng nhập thành công!',
+                user: { role: user.role, avatar: payload.avatar, accessToken, refreshToken }
+            });
+        } catch (err) {
+            console.log(err);
+            return res.status(500).json({
+                success: false,
+                message: 'Lỗi phía server',
+                error: err.message
+            });
+        }
+    }
+
+    // [POST] /api/auth/login-hotel-owner
+    async loginHotelOwner(req, res) {
+        try {
+            const { username, password } = req.body;
+            const user = await User.findOne({ username }).lean();
+
+            if (!user) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'Không tìm thấy chủ khách sạn',
+                });
+            }
+
+            if (user.role != 'hotel_owner') {
+                return res.status(400).json({
+                    success: false,
+                    message: 'sai tên đăng nhập hoặc mật khẩu!',
+                });
+            }
+
+            const passwordCorrect = await bcrypt.compare(password, user.password);
+            if (!passwordCorrect) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'sai tên đăng nhập hoặc mật khẩu!',
+                });
+            }
+
+            const payload = {
+                user: user._id,
+                role: user.role,
+                avatar: user.avatar || 'https://i0.wp.com/sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png?ssl=1'
+            };
+
+            const accessToken = generateAccessToken(payload);
+            const refreshToken = generateRefreshToken(payload);
+
+            console.log(accessToken);
+            // Set cookie
+            res.cookie('accessToken', accessToken, {
+                httpOnly: true,
+                secure: false,
+                sameSite: 'Lax',
+                path: '/',
+                maxAge: 24 * 60 * 60 * 1000 // 1 ngày
+            });
+
+            res.cookie('refreshToken', refreshToken, {
+                httpOnly: true,
+                secure: false,
+                sameSite: 'Lax',
+                path: '/',
+                maxAge: 7 * 24 * 60 * 60 * 1000 // 7 ngày
+            });
+
+            return res.status(200).json({
+                success: true,
+                message: 'Đăng nhập thành công!',
+                user: { role: user.role, avatar: payload.avatar, accessToken, refreshToken }
+            });
+        } catch (err) {
+            console.log(err);
+            return res.status(500).json({
+                success: false,
+                message: 'Lỗi phía server',
+                error: err.message
             });
         }
     }
@@ -149,7 +347,7 @@ class AuthController {
         try {
             const refreshToken = req.cookies.refreshToken;
             if (!refreshToken) {
-                return res.status(400).json({
+                return res.status(401).json({
                     success: false,
                     message: 'Thiếu refresh token!',
                 });
@@ -213,7 +411,7 @@ class AuthController {
 
             await user.save();
 
-            const resetLink = `http://localhost:3000/api/auth/reset-password/${resetToken}`;
+            const resetLink = `http://localhost:5500/FE/Auth/reset-password.html?resetToken=${resetToken}`;
 
             const sendEmail = await sendResetPassword(email, resetLink);
 
@@ -239,20 +437,27 @@ class AuthController {
         }
     }
 
-    // [POST] /api/auth/reset-password/:token
+    // [POST] /api/auth/reset-password?resetToken={resetToken}
     async resetPassword(req, res) {
         try {
-            const token = req.params.token;
+            const resetToken = req.query.resetToken;
             const { password, confirmPassword } = req.body;
+
+            if (password !== confirmPassword) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'Mật khẩu nhập lại không khớp!'
+                });
+            }
 
             let decoded;
             try {
-                decoded = jwt.verify(token, process.env.RESET_PASSWORD_SECRET);
+                decoded = jwt.verify(resetToken, process.env.RESET_PASSWORD_SECRET);
             } catch (err) {
                 console.log(err);
                 return res.status(400).json({
                     success: false,
-                    message: 'Token không hợp lệ hoặc đã quá hạn',
+                    message: 'Thời gian đặt lại mật khẩu đã quá hạn. Vui lòng gửi lại yêu cầu!',
                     error: err.message,
                 });
             }
@@ -375,7 +580,14 @@ class AuthController {
                 if (!user) {
                     return res.status(400).json({
                         success: false,
-                        message: 'Không tìm thấy người dùng!',
+                        message: 'Không tìm thấy tài khoản!',
+                    });
+                }
+
+                if (user.isVerify === true) {
+                    return res.status(400).json({
+                        success: false,
+                        message: 'Tài khoản đã được xác thực!'
                     });
                 }
 
@@ -404,10 +616,32 @@ class AuthController {
         }
     }
 
-    // [GET] /api/auth/login
-    async loginPage(req, res) {
-        res.render('AuthView/login');
+   // [GET] /api/auth/me
+   async checkLogin(req, res) {
+    try {
+        const userData = req.user;
+        
+        if (!userData) return;
+
+        const user = await User.findById(userData.id).lean();
+
+        return res.status(200).json({
+            success: true,
+            user: {
+                name: user.name,
+                avatar: user.avatar,
+                role: user.role
+            }
+        });
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({
+            success: false,
+            message: 'Lỗi phía server',
+            error: err.message
+        });
     }
+   }
     
 }
 

@@ -12,8 +12,8 @@ function Authentication(req, res, next) {
 
     jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) {
-            console.log('access token lỗi', err.message);
-            return res.status(403).json({
+            console.log('access token lỗi: ', err.message);
+            return res.status(401).json({
                 success: false,
                 message: 'Access Token không hợp lệ hoặc hết hạn',
             });

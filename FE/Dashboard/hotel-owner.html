@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Bảng điều khiển Chủ khách sạn</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="font-display">
+    <div
+        class="relative flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden">
+        <div class="flex h-full w-full grow">
+            <!-- SideNavBar -->
+            <aside
+                class="flex flex-col h-screen w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark fixed top-0 left-0 z-20">
+                <div class="flex items-center gap-3 p-4 border-b border-slate-200 dark:border-slate-800 h-16">
+                    <span class="material-symbols-outlined text-primary text-3xl"> real_estate_agent </span>
+                    <h1 class="text-lg font-bold text-slate-900 dark:text-white">Hotel Admin</h1>
+                </div>
+                <div class="flex-1 overflow-y-auto">
+                    <nav class="flex flex-col gap-1 p-2">
+                        <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20 text-primary" href="#">
+                            <span class="material-symbols-outlined">dashboard</span>
+                            <p class="text-sm font-medium leading-normal">Tổng quan</p>
+                        </a>
+                        <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
+                            href="#">
+                            <span class="material-symbols-outlined">apartment</span>
+                            <p class="text-sm font-medium leading-normal">Quản lý Khách sạn</p>
+                        </a>
+                        <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
+                            href="#">
+                            <span class="material-symbols-outlined">calendar_month</span>
+                            <p class="text-sm font-medium leading-normal">Quản lý Đặt phòng</p>
+                        </a>
+                        <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
+                            href="#">
+                            <span class="material-symbols-outlined">confirmation_number</span>
+                            <p class="text-sm font-medium leading-normal">Phiếu giảm giá</p>
+                        </a>
+                        <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
+                            href="#">
+                            <span class="material-symbols-outlined">lab_profile</span>
+                            <p class="text-sm font-medium leading-normal">Báo cáo</p>
+                        </a>
+                    </nav>
+                </div>
+                <div class="p-2 border-t border-slate-200 dark:border-slate-800">
+                    <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
+                        href="#">
+                        <span class="material-symbols-outlined">settings</span>
+                        <p class="text-sm font-medium leading-normal">Cài đặt</p>
+                    </a>
+                    <a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
+                        href="#">
+                        <span class="material-symbols-outlined">logout</span>
+                        <p class="text-sm font-medium leading-normal">Đăng xuất</p>
+                    </a>
+                </div>
+                <div class="flex items-center gap-3 p-4 border-t border-slate-200 dark:border-slate-800">
+                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+                        data-alt="Avatar of Hoàng An"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBKA3vSq6kKy8nzmTSpdaBCimrrfIq599JH79X64_0_UeMU_uK1v-z1pKr6KB9HiVb6AekDOGOJbEZvliJ8cRHcMJtldtePDi375dWX4PjSXQnGICQxERwGxOrGnG26biAZUY7NrC-mgvhP8SXhFHF_9xBVX9YwoIo8ayA3hWVdGhfPGRSTrKq7dYEkuHvVqy5uyKiLXDncQWcpNXgRyYkz4S0abdoZF2U77x1o0yw9DvgAbeBESwfPtPh2G1lqcMNyx7FG2kXHXGk");'>
+                    </div>
+                    <div class="flex flex-col">
+                        <h1 class="text-slate-900 dark:text-white text-sm font-medium leading-normal">Hoàng An</h1>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs font-normal leading-normal">Chủ khách sạn
+                        </p>
+                    </div>
+                </div>
+            </aside>
+            <main class="flex-1 ml-64">
+                <!-- TopNavBar -->
+                <header
+                    class="flex items-center justify-between whitespace-nowrap border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark px-6 py-3 h-16 sticky top-0 z-10">
+                    <h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight">Bảng điều khiển</h2>
+                    <div class="flex items-center gap-4">
+                        <label class="relative hidden sm:block">
+                            <span
+                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">search</span>
+                            <input
+                                class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-900 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 h-10 placeholder:text-slate-500 pl-10 text-sm font-normal"
+                                placeholder="Tìm kiếm..." value="" />
+                        </label>
+                        <div class="flex gap-2">
+                            <button
+                                class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700">
+                                <span class="material-symbols-outlined text-xl">notifications</span>
+                            </button>
+                            <button
+                                class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700">
+                                <span class="material-symbols-outlined text-xl">help_outline</span>
+                            </button>
+                        </div>
+                        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+                            data-alt="Avatar of Hoàng An"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC3Sb6816r8rvh_h7idOUwEO7OlNv-LYTjusT9FJY7TEx5tS6Z1Ot5DJKCgYmo9U3Rs7dSZgCRrSCdOrFw7Qpq_wDHis2YPzmClqwEBA4sPoETcwA7i_9w5TSHlEUtn22fGnAkMJu7F1jaoXgrXXfXUJmj6I7XgwEvrqZ5ah_vtOXdODsT2xQqBgk_612dHMYNRh0vwClg3lwKdptsjKCDAjvd-lE9Lip94i39RwlPdBQGpseHcNZWey_V2VbHx7g6ZXJesomiibrY");'>
+                        </div>
+                    </div>
+                </header>
+                <div class="p-6">
+                    <!-- PageHeading -->
+                    <div class="flex flex-wrap justify-between items-center gap-4 mb-6">
+                        <div class="flex flex-col gap-1">
+                            <p class="text-slate-900 dark:text-white text-2xl font-bold leading-tight">Chào mừng trở
+                                lại, Hoàng An!</p>
+                            <p class="text-slate-500 dark:text-slate-400 text-base font-normal leading-normal">Đây là
+                                tổng quan nhanh về hoạt động kinh doanh của bạn.</p>
+                        </div>
+                        <button
+                            class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold gap-2 hover:bg-primary/90">
+                            <span class="material-symbols-outlined">add</span>
+                            <span class="truncate">Thêm khách sạn mới</span>
+                        </button>
+                    </div>
+                    <!-- Stats -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                        <div
+                            class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                            <p class="text-slate-600 dark:text-slate-300 text-base font-medium">Doanh thu tháng này</p>
+                            <p class="text-slate-900 dark:text-white text-3xl font-bold">150M VNĐ</p>
+                            <p class="text-green-500 text-sm font-medium flex items-center gap-1">
+                                <span class="material-symbols-outlined text-base">trending_up</span>
+                                <span>+5.2%</span>
+                            </p>
+                        </div>
+                        <div
+                            class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                            <p class="text-slate-600 dark:text-slate-300 text-base font-medium">Đặt phòng mới</p>
+                            <p class="text-slate-900 dark:text-white text-3xl font-bold">42</p>
+                            <p class="text-green-500 text-sm font-medium flex items-center gap-1">
+                                <span class="material-symbols-outlined text-base">trending_up</span>
+                                <span>+10%</span>
+                            </p>
+                        </div>
+                        <div
+                            class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                            <p class="text-slate-600 dark:text-slate-300 text-base font-medium">Tỷ lệ lấp đầy</p>
+                            <p class="text-slate-900 dark:text-white text-3xl font-bold">75%</p>
+                            <p class="text-red-500 text-sm font-medium flex items-center gap-1">
+                                <span class="material-symbols-outlined text-base">trending_down</span>
+                                <span>-1.5%</span>
+                            </p>
+                        </div>
+                        <div
+                            class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                            <p class="text-slate-600 dark:text-slate-300 text-base font-medium">Khách check-in hôm nay
+                            </p>
+                            <p class="text-slate-900 dark:text-white text-3xl font-bold">12</p>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm font-medium flex items-center gap-1">
+                                <span class="material-symbols-outlined text-base">person</span>
+                                <span>+2 so với hôm qua</span>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Main Content Grid -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <!-- Chart -->
+                        <div
+                            class="lg:col-span-2 flex flex-col gap-2 rounded-xl border border-slate-200 dark:border-slate-700 p-6 bg-white dark:bg-slate-800">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-slate-600 dark:text-slate-300 text-base font-medium">Doanh thu trong
+                                        30 ngày qua</p>
+                                    <p class="text-slate-900 dark:text-white text-3xl font-bold truncate">150.000.000
+                                        VNĐ</p>
+                                    <div class="flex gap-1">
+                                        <p class="text-slate-500 dark:text-slate-400 text-sm font-normal">Tháng này</p>
+                                        <p class="text-green-500 text-sm font-medium">+5.2%</p>
+                                    </div>
+                                </div>
+                                <select
+                                    class="form-select rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 text-sm">
+                                    <option>30 ngày qua</option>
+                                    <option>90 ngày qua</option>
+                                    <option>Năm nay</option>
+                                </select>
+                            </div>
+                            <div class="flex min-h-[250px] flex-1 flex-col gap-8 py-4">
+                                <svg fill="none" height="100%" preserveaspectratio="none" viewbox="-3 0 478 150"
+                                    width="100%" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+                                            <stop offset="5%" stop-color="#137fec" stop-opacity="0.3"></stop>
+                                            <stop offset="95%" stop-color="#137fec" stop-opacity="0"></stop>
+                                        </lineargradient>
+                                    </defs>
+                                    <path
+                                        d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25V149H0V109Z"
+                                        fill="url(#chartGradient)"></path>
+                                    <path
+                                        d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25"
+                                        stroke="#137fec" stroke-linecap="round" stroke-width="3"></path>
+                                </svg>
+                                <div class="flex justify-around">
+                                    <p class="text-slate-500 dark:text-slate-400 text-xs font-bold">Tuần 1</p>
+                                    <p class="text-slate-500 dark:text-slate-400 text-xs font-bold">Tuần 2</p>
+                                    <p class="text-slate-500 dark:text-slate-400 text-xs font-bold">Tuần 3</p>
+                                    <p class="text-slate-500 dark:text-slate-400 text-xs font-bold">Tuần 4</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Recent Bookings -->
+                        <div
+                            class="flex flex-col gap-4 rounded-xl border border-slate-200 dark:border-slate-700 p-6 bg-white dark:bg-slate-800">
+                            <h3 class="text-slate-900 dark:text-white text-lg font-bold">Đặt phòng gần đây</h3>
+                            <div class="flex flex-col gap-4">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="bg-blue-100 dark:bg-blue-900/50 rounded-lg p-3 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-blue-500">hotel</span>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-slate-800 dark:text-slate-100 font-medium">Lê Văn A</p>
+                                        <p class="text-slate-500 dark:text-slate-400 text-sm">Khách sạn Sài Gòn</p>
+                                    </div>
+                                    <p class="font-medium text-slate-800 dark:text-slate-100">+2.5M</p>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="bg-green-100 dark:bg-green-900/50 rounded-lg p-3 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-green-500">beach_access</span>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-slate-800 dark:text-slate-100 font-medium">Trần Thị B</p>
+                                        <p class="text-slate-500 dark:text-slate-400 text-sm">Resort Đà Nẵng</p>
+                                    </div>
+                                    <p class="font-medium text-slate-800 dark:text-slate-100">+5.1M</p>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="bg-yellow-100 dark:bg-yellow-900/50 rounded-lg p-3 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-yellow-500">villa</span>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-slate-800 dark:text-slate-100 font-medium">Nguyễn Văn C</p>
+                                        <p class="text-slate-500 dark:text-slate-400 text-sm">Villa Vũng Tàu</p>
+                                    </div>
+                                    <p class="font-medium text-slate-800 dark:text-slate-100">+3.8M</p>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="bg-purple-100 dark:bg-purple-900/50 rounded-lg p-3 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-purple-500">apartment</span>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-slate-800 dark:text-slate-100 font-medium">Phạm Thị D</p>
+                                        <p class="text-slate-500 dark:text-slate-400 text-sm">Khách sạn Hà Nội</p>
+                                    </div>
+                                    <p class="font-medium text-slate-800 dark:text-slate-100">+1.9M</p>
+                                </div>
+                            </div>
+                            <a class="text-primary text-sm font-bold text-center mt-2 hover:underline" href="#">Xem tất
+                                cả</a>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>

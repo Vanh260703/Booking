@@ -5,10 +5,7 @@ const CitySchema = mongoose.Schema({
     nameEn: {type: String, trim: true},
     slug: {type: String, required: true},
     description: String,
-    images: [{
-        url: String,
-        caption: String,
-    }],
+    image: String,
     location: {
         type: {
             type: String,

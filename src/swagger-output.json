@@ -1,0 +1,1979 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Booking API",
+    "description": "Tài liệu API tự động sinh ra từ Express routes",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Các API xác thực và đăng nhập"
+    },
+    {
+      "name": "User",
+      "description": "Các API người dùng"
+    },
+    {
+      "name": "City",
+      "description": "Các API thành phố"
+    },
+    {
+      "name": "Hotel",
+      "description": "Các API khách sạn"
+    },
+    {
+      "name": "Booking",
+      "description": "Các API booking"
+    },
+    {
+      "name": "Payment",
+      "description": "Các API thanh toán"
+    },
+    {
+      "name": "Room",
+      "description": "Các API phòng trong khách sạn"
+    },
+    {
+      "name": "Search",
+      "description": "Các API tìm kiếm"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {
+    "cookieAuth": {
+      "type": "apiKey",
+      "in": "cookie",
+      "name": "accessToken",
+      "description": "JWT lưu trong cookie"
+    }
+  },
+  "paths": {
+    "/api/auth/login": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Trang đăng nhập",
+        "description": "Trả về giao diện đăng nhập người dùng.",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Đăng nhập",
+        "description": "Đăng nhập bằng email và mật khẩu. Trả về cookie chứa JWT.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/auth/register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Đăng ký tài khoản người dùng",
+        "description": "Tạo tài khoản người dùng mới trong hệ thống.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/auth/register-owner": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Đăng ký tài khoản chủ khách sạn",
+        "description": "Tạo tài khoản dành cho đối tác chủ khách sạn.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "username": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "businessName": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Đăng xuất",
+        "description": "Xóa cookie JWT và đăng xuất người dùng khỏi hệ thống.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/auth/refresh-token": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Làm mới token",
+        "description": "Tạo access token mới dựa trên refresh token lưu trong cookie.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/auth/forgot-password": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Quên mật khẩu",
+        "description": "Gửi email đặt lại mật khẩu cho người dùng.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/auth/reset-password/{token}": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Đặt lại mật khẩu",
+        "description": "Cập nhật mật khẩu mới thông qua mã token trong email.",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "password": {
+                  "example": "any"
+                },
+                "confirmPassword": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/auth/verify-email": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Gửi email xác minh",
+        "description": "Gửi link xác minh tài khoản đến email của người dùng.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/auth/verify-email/{token}": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Xác minh tài khoản qua email",
+        "description": "Xác nhận người dùng khi họ truy cập link trong email xác minh.",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/auth/google": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Đăng nhập bằng Google",
+        "description": "Chuyển hướng người dùng đến trang đăng nhập Google.",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/auth/redirect/google": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Xác thực Google callback",
+        "description": "Nhận phản hồi từ Google, tạo JWT, và lưu vào cookie.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/auth/facebook": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Đăng nhập bằng Facebook",
+        "description": "Chuyển hướng người dùng đến trang đăng nhập Facebook.",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/auth/facebook/callback": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Xác thực Facebook callback",
+        "description": "Nhận phản hồi từ Facebook, tạo JWT, và lưu vào cookie.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/users/profile": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Lấy thông tin hồ sơ người dùng",
+        "description": "Trả về thông tin chi tiết hồ sơ của người dùng hiện tại dựa vào token đăng nhập.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Cập nhật thông tin hồ sơ người dùng",
+        "description": "Cho phép người dùng cập nhật thông tin cá nhân như tên, avatar, số điện thoại,...",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/users/change-password": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Đổi mật khẩu người dùng",
+        "description": "Người dùng có thể thay đổi mật khẩu khi đang đăng nhập. Cần nhập mật khẩu cũ và mật khẩu mới.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "newPassword": {
+                  "example": "any"
+                },
+                "confirmedPassword": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/users/{id}/booking": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Lấy danh sách đặt phòng của người dùng",
+        "description": "Lấy danh sách tất cả các booking của người dùng theo ID. Chỉ có thể xem thông tin của chính mình.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID của người dùng",
+            "example": "67245a1b8d3216aa9e23d123"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ]
+      }
+    },
+    "/api/users/pending-owners": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Lấy danh sách đối tác chờ duyệt",
+        "description": "Admin có thể xem danh sách các chủ khách sạn (owner) đang chờ phê duyệt để kích hoạt tài khoản.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ]
+      }
+    },
+    "/api/users/{id}": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Xóa tài khoản người dùng (admin)",
+        "description": "Admin có thể xóa vĩnh viễn một tài khoản khỏi hệ thống bằng ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID người dùng cần xóa"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Xem chi tiết người dùng (admin)",
+        "description": "Admin có thể xem thông tin chi tiết của một người dùng cụ thể bằng ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID người dùng"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/users/{id}/approve-owner": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Phê duyệt tài khoản chủ khách sạn",
+        "description": "Admin phê duyệt tài khoản đăng ký làm chủ khách sạn (owner). Sau khi duyệt, người này có quyền quản lý khách sạn của mình.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID người dùng cần phê duyệt"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/cities/": {
+      "get": {
+        "tags": [
+          "City"
+        ],
+        "summary": "Lấy danh sách thành phố",
+        "description": "Lấy toàn bộ các thành phố trong hệ thống",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "City"
+        ],
+        "summary": "Thêm mới một thành phố",
+        "description": "Dành cho admin: Thêm mới một thành phố vào hệ thống",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "description": {
+                  "example": "any"
+                },
+                "images": {
+                  "example": "any"
+                },
+                "isPopular": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/cities/{city}": {
+      "get": {
+        "tags": [
+          "City"
+        ],
+        "summary": "Lấy chi tiết một thành phố",
+        "description": "Lấy chi tiết một thành phố thông qua ID",
+        "parameters": [
+          {
+            "name": "city",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/{citiescity}": {
+      "put": {
+        "tags": [
+          "City"
+        ],
+        "summary": "Cập nhật thông tin về thành phố",
+        "description": "Dành cho admin: Cập nhật thông tin về thành phố thông qua ID",
+        "parameters": [
+          {
+            "name": "citiescity",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/hotels/recommended": {
+      "get": {
+        "tags": [
+          "Hotel"
+        ],
+        "summary": "Lấy danh sách khách sạn được đề xuất",
+        "description": "Trả về danh sách khách sạn được hệ thống gợi ý dựa trên mức độ phổ biến, đánh giá, hoặc vị trí.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/hotels/featured": {
+      "get": {
+        "tags": [
+          "Hotel"
+        ],
+        "summary": "Lấy danh sách khách sạn nổi bật",
+        "description": "Lấy các khách sạn được đánh dấu là nổi bật để hiển thị trên trang chủ.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/hotels/{city}": {
+      "get": {
+        "tags": [
+          "Hotel"
+        ],
+        "summary": "Lấy danh sách khách sạn theo thành phố",
+        "description": "Trả về danh sách tất cả khách sạn thuộc một thành phố cụ thể.",
+        "parameters": [
+          {
+            "name": "city",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/hotels/{hotelId}": {
+      "get": {
+        "tags": [
+          "Hotel"
+        ],
+        "summary": "Lấy thông tin chi tiết của khách sạn",
+        "description": "Trả về chi tiết khách sạn bao gồm thông tin, tiện nghi, hình ảnh và đánh giá.",
+        "parameters": [
+          {
+            "name": "hotelId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Hotel"
+        ],
+        "summary": "Cập nhật thông tin khách sạn (Owner)",
+        "description": "Dành cho chủ khách sạn: cập nhật thông tin, mô tả, hoặc hình ảnh khách sạn của mình.",
+        "parameters": [
+          {
+            "name": "hotelId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/hotels/{hotelId}/rooms": {
+      "get": {
+        "tags": [
+          "Hotel"
+        ],
+        "summary": "Lấy danh sách phòng của khách sạn",
+        "description": "Trả về tất cả các loại phòng thuộc về một khách sạn cụ thể, bao gồm giá, số lượng và tình trạng phòng.",
+        "parameters": [
+          {
+            "name": "hotelId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/hotels/{hotelId}/bookings": {
+      "get": {
+        "tags": [
+          "Hotel"
+        ],
+        "summary": "Lấy tất cả booking của khách sạn (Owner)",
+        "description": "Dành cho chủ khách sạn: xem danh sách toàn bộ đơn đặt phòng trong khách sạn của mình.",
+        "parameters": [
+          {
+            "name": "hotelId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/api/hotels/": {
+      "post": {
+        "tags": [
+          "Hotel"
+        ],
+        "summary": "Tạo mới khách sạn (Owner)",
+        "description": "Dành cho chủ khách sạn: thêm mới một khách sạn vào hệ thống.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "description": {
+                  "example": "any"
+                },
+                "propertyType": {
+                  "example": "any"
+                },
+                "cityName": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Hotel"
+        ],
+        "summary": "Lấy danh sách tất cả khách sạn (Admin)",
+        "description": "Dành cho admin: xem danh sách toàn bộ khách sạn trong hệ thống.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/hotels/{hotelId}/approve": {
+      "patch": {
+        "tags": [
+          "Hotel"
+        ],
+        "summary": "Phê duyệt khách sạn (Admin)",
+        "description": "Dành cho admin: phê duyệt khách sạn do đối tác gửi lên để được hiển thị công khai.",
+        "parameters": [
+          {
+            "name": "hotelId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/hotels/{hotelId}/reject": {
+      "patch": {
+        "tags": [
+          "Hotel"
+        ],
+        "summary": "Từ chối phê duyệt khách sạn (Admin)",
+        "description": "Dành cho admin: từ chối yêu cầu phê duyệt khách sạn, kèm lý do nếu có.",
+        "parameters": [
+          {
+            "name": "hotelId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/search/": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Search"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "city": {
+                  "example": "any"
+                },
+                "startDate": {
+                  "example": "any"
+                },
+                "endDate": {
+                  "example": "any"
+                },
+                "bookingInfo": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/rooms/": {
+      "get": {
+        "tags": [
+          "Room"
+        ],
+        "summary": "Lấy danh sách tất cả các phòng",
+        "description": "Trả về danh sách toàn bộ các phòng trong hệ thống (có thể giới hạn số lượng hoặc filter theo city, hotel, ...).",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Room"
+        ],
+        "summary": "Tạo phòng mới cho khách sạn",
+        "description": "Chỉ chủ khách sạn (owner) có thể tạo phòng mới cho khách sạn của mình.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "totalRooms": {
+                  "example": "any"
+                },
+                "name": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/rooms/{roomId}": {
+      "get": {
+        "tags": [
+          "Room"
+        ],
+        "summary": "Lấy chi tiết phòng",
+        "description": "Trả về thông tin chi tiết của một phòng bao gồm loại phòng, giá, mô tả, và các tiện ích.",
+        "parameters": [
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Room"
+        ],
+        "summary": "Xóa phòng cụ thể",
+        "description": "Xóa một phòng đơn lẻ (instance) thuộc loại phòng nào đó.",
+        "parameters": [
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/rooms/{roomId}/availability": {
+      "get": {
+        "tags": [
+          "Room"
+        ],
+        "summary": "Kiểm tra tình trạng phòng",
+        "description": "Kiểm tra xem phòng có sẵn trong khoảng thời gian mong muốn hay không.",
+        "parameters": [
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "checkIn",
+            "in": "query",
+            "description": "Ngày nhận phòng",
+            "required": true,
+            "type": "string",
+            "example": "2025-12-01"
+          },
+          {
+            "name": "checkOut",
+            "in": "query",
+            "description": "Ngày trả phòng",
+            "required": true,
+            "type": "string",
+            "example": "2025-12-05"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/rooms/room-types/{roomId}": {
+      "put": {
+        "tags": [
+          "Room"
+        ],
+        "summary": "Cập nhật loại phòng",
+        "description": "Chủ khách sạn có thể chỉnh sửa thông tin loại phòng như giá, mô tả, tiện nghi, ...",
+        "parameters": [
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Room"
+        ],
+        "summary": "Xóa loại phòng",
+        "description": "Xóa toàn bộ loại phòng khỏi hệ thống (bao gồm tất cả các phòng con thuộc loại đó).",
+        "parameters": [
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/rooms/{roomId}/status": {
+      "patch": {
+        "tags": [
+          "Room"
+        ],
+        "summary": "Cập nhật trạng thái phòng",
+        "description": "Thay đổi trạng thái phòng (ví dụ: available, maintenance, out_of_service, ...).",
+        "parameters": [
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/rooms/{roomId}/pricing": {
+      "patch": {
+        "tags": [
+          "Room"
+        ],
+        "summary": "Cập nhật giá phòng",
+        "description": "Thay đổi giá phòng theo ngày hoặc theo loại.",
+        "parameters": [
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/rooms/{roomId}/bookings": {
+      "get": {
+        "tags": [
+          "Room"
+        ],
+        "summary": "Xem danh sách booking của phòng",
+        "description": "Chủ khách sạn có thể xem toàn bộ danh sách đặt phòng cho một phòng cụ thể.",
+        "parameters": [
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/bookings/": {
+      "post": {
+        "tags": [
+          "Booking"
+        ],
+        "summary": "Khởi tạo booking",
+        "description": "Tạo mới một đơn đặt phòng. Người dùng chưa đăng nhập vẫn có thể đặt tạm (OptionalAuth).",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "roomId": {
+                  "example": "any"
+                },
+                "checkIn": {
+                  "example": "any"
+                },
+                "checkOut": {
+                  "example": "any"
+                },
+                "discount": {
+                  "example": "any"
+                },
+                "guests": {
+                  "example": "any"
+                },
+                "guestDetails": {
+                  "example": "any"
+                },
+                "note": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Booking"
+        ],
+        "summary": "Lấy danh sách booking của người dùng",
+        "description": "Trả về tất cả các đơn đặt phòng mà người dùng hiện tại đã tạo.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/bookings/{booking}": {
+      "get": {
+        "tags": [
+          "Booking"
+        ],
+        "summary": "Chi tiết booking",
+        "description": "Lấy thông tin chi tiết của một booking cụ thể (theo ID).",
+        "parameters": [
+          {
+            "name": "booking",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/bookings/{booking}/cancel": {
+      "put": {
+        "tags": [
+          "Booking"
+        ],
+        "summary": "Hủy booking",
+        "description": "Cho phép người dùng đã đăng nhập hủy một đơn đặt phòng còn hiệu lực.",
+        "parameters": [
+          {
+            "name": "booking",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-forwarded-for",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "reason": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/bookings/{booking}/confirm": {
+      "patch": {
+        "tags": [
+          "Booking"
+        ],
+        "summary": "Chủ khách sạn xác nhận booking",
+        "description": "Dành cho chủ khách sạn: xác nhận đơn đặt phòng mà khách đã gửi.",
+        "parameters": [
+          {
+            "name": "booking",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/bookings/{booking}/check-in": {
+      "patch": {
+        "tags": [
+          "Booking"
+        ],
+        "summary": "Check-in cho booking",
+        "description": "Dành cho chủ khách sạn: cập nhật trạng thái booking sang “đã nhận phòng”.",
+        "parameters": [
+          {
+            "name": "booking",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/bookings/{booking}/check-out": {
+      "patch": {
+        "tags": [
+          "Booking"
+        ],
+        "summary": "Check-out cho booking",
+        "description": "Dành cho chủ khách sạn: cập nhật trạng thái booking sang “đã trả phòng”.",
+        "parameters": [
+          {
+            "name": "booking",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/payments/create": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "summary": "Khởi tạo giao dịch thanh toán mới",
+        "description": "Tạo giao dịch thanh toán cho một đơn đặt phòng. Hỗ trợ cả MOMO và VNPAY.",
+        "parameters": [
+          {
+            "name": "x-forwarded-for",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "totalAmount",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "bookingNumber",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "paymentMethod": {
+                  "example": "any"
+                },
+                "bankingMethod": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/payments/retry-payment": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "summary": "Thử lại giao dịch thanh toán",
+        "description": "Nếu giao dịch thanh toán trước đó thất bại hoặc bị gián đoạn, người dùng có thể thử lại tại đây.",
+        "parameters": [
+          {
+            "name": "x-forwarded-for",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "bookingNumber": {
+                  "example": "any"
+                },
+                "paymentMethod": {
+                  "example": "any"
+                },
+                "methodPayment": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/payments/transaction": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "summary": "Lấy thông tin giao dịch thanh toán",
+        "description": "Truy xuất thông tin chi tiết của giao dịch hiện tại, bao gồm mã giao dịch, trạng thái và số tiền.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/payments/momo_callback": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "summary": "Callback từ MOMO",
+        "description": "Endpoint dùng để MOMO gửi kết quả thanh toán về hệ thống sau khi người dùng hoàn tất thanh toán. Không cần xác thực.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "signature": {
+                  "example": "any"
+                },
+                "resultCode": {
+                  "example": "any"
+                },
+                "orderId": {
+                  "example": "any"
+                },
+                "message": {
+                  "example": "any"
+                },
+                "amount": {
+                  "example": "any"
+                },
+                "transId": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/payments/vnp_return": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "summary": "Callback từ VNPAY",
+        "description": "Endpoint dùng để VNPAY gửi kết quả thanh toán về hệ thống. Không cần xác thực.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "cookieAuth": []
+    }
+  ]
+}

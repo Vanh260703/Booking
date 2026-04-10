@@ -2,14 +2,15 @@ const authRouter = require('./auth');
 const userRouter = require('./user');
 const hotelRouter = require('./hotel');
 const cityRouter = require('./city');
-// const roomRouter = require('./room');
-// const bookingRouter = require('./booking');
-// const paymentRouter = require('./payment');
-// const reviewRouter = require('./review');
-// const couponRouter = require('./coupon');
-// const notificationRouter = require('./notification');
-// const dashboardRouter = require('./dashboad');
-// const uploadRouter = require('./upload');
+const searchRouter = require('./search');
+const roomRouter = require('./room');
+const bookingRouter = require('./booking');
+const paymentRouter = require('./payment');
+const couponRouter = require('./coupon');
+const reviewRouter = require('./review');
+const notificationRouter = require('./notification');
+const uploadRouter = require('./upload');
+const dashboardRouter = require('./dashboard');
 
 function route (app) {
     // routes/auth.js
@@ -21,32 +22,35 @@ function route (app) {
     // routes/city.js
     app.use('/api/cities', cityRouter);
 
-    // // routes/hotel.js
+    // routes/hotel.js
     app.use('/api/hotels', hotelRouter);
 
-    // // routes/room.js
-    // app.use('/api/room', roomRouter);
+    // routes/search.js
+    app.use('/api/search', searchRouter); 
 
-    // // routes/booking.js
-    // app.use('/api/booking', bookingRouter);
+    // routes/room.js
+    app.use('/api/rooms', roomRouter);
 
-    // // routes/payment.js
-    // app.use('/api/payment', paymentRouter);
+    // routes/booking.js
+    app.use('/api/bookings', bookingRouter);
 
-    // // routes/review.js
-    // app.use('/api/review', reviewRouter);
+    // routes/payment.js
+    app.use('/api/payments', paymentRouter);
 
-    // // routes/coupon.js
-    // app.use('/api/coupon', couponRouter);
+    // routes/coupon.js
+    app.use('/api/coupons',  couponRouter);
 
-    // // routes/notification.js
-    // app.use('/api/notification', notificationRouter);
+    // routes/review.js
+    app.use('/api/reviews', reviewRouter);
 
-    // // routes/dashboard.js
-    // app.use('/api/dashboard', dashboardRouter);
+    // routes/notification.js
+    app.use('/api/notifications', notificationRouter);
 
-    // // routes/upload.js
-    // app.use('/api/upload', uploadRouter);
+    // routes/upload.js
+    app.use('/api/upload', uploadRouter);
+
+    // routes/dashboard.js
+    app.use('/api/dashboard', dashboardRouter);
 }
 
 module.exports = route;

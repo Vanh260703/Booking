@@ -1,26 +1,43 @@
 const mongoose = require('mongoose');
 
-const RoomSchema = mongoose.Schema(
+const RoomTypeSchema = mongoose.Schema(
     {
         hotel: {type: mongoose.Schema.Types.ObjectId, ref: 'Hotel'},
         name: {type: String, required: true}, // Tên phòng
         type: {type: String, enum: ['single', 'double', 'twin', 'triple', 'suite', 'deluxe', 'family', 'dormitory'], reuqired: true}, // Loại phòng
+        description: String,
         // Ảnh phòng
         images: [{
             url: String,
             caption: String,
         }],
-        number: {type: Number, required: true}, // Số phòng
-        floor: {type: Number, required: true}, // Tầng
         size: {type: Number, min: 0, required: true}, // Diện tích
-        // Loại giường
-        bedType: {
-            type: String,
-            enum: ['single', 'double', 'queen', 'king', 'twin', 'bunk'],
-            required: true,
+        // Cấu hình giường
+        bedConfiguration: [{
+            type: {
+                type: String,
+                enum: ['single', 'double', 'queen', 'king', 'twin', 'bunk'],
+                required: true,
+            },
+            quantity: {
+                type: Number,
+                min: 1,
+                required: true,
+            }
+        }],
+        // Sức chứa
+        maxOccupancy: {
+            adults: {
+                type: Number,
+                min: 1,
+                required: true,
+            },
+            children: {
+                type: Number,
+                min: 0,
+                default: 0,
+            },
         },
-        // Số lượng giường
-        numberOfBeds: {type: Number, min: 1, required: true},
         pricing: {
             // Giá cơ bản
             basePrice: {type: Number, min: 0, required: true},
@@ -29,7 +46,6 @@ const RoomSchema = mongoose.Schema(
             // Giá ngày lễ (nếu có)
             holidayPrice: Number,
         },
-
         // Tiện nghi
         amenities: [
             {
@@ -39,11 +55,21 @@ const RoomSchema = mongoose.Schema(
                 ],
             },
         ],
+        // Tổng số phòng
+        totalRooms: { type: Number, default: 1, required: true},
+        availableRoom: {type: Number, default: 1, required: true},
         // Tình trạng phòng (còn trống hay không)
-        status: {
-            type: String,
-            enum: ['available', 'unavailable'],
-            default: 'available'
+        isActive: {type: Boolean, default: false},
+        // Chính sách phòng
+        policies: {
+            checkInTime: {
+                type: String,
+                default: '14:00'
+            },
+            checkOutTime: {
+                type: String,
+                default: '12:00'
+            },
         },
         // Giảm giá (tuỳ chọn)
         discount: [{
@@ -58,4 +84,4 @@ const RoomSchema = mongoose.Schema(
     }
 );
 
-module.exports = mongoose.model('Room', RoomSchema);
+module.exports = mongoose.model('RoomType', RoomTypeSchema);

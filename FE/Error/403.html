@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Trang Lỗi 403</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,0"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="font-display">
+    <div
+        class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <div class="flex flex-1 justify-center">
+                <div class="layout-content-container flex flex-col max-w-7xl flex-1">
+                    <!-- TopNavBar -->
+                    <header class="flex items-center justify-between whitespace-nowrap px-4 sm:px-6 lg:px-8 py-4">
+                        <div class="flex items-center gap-4 text-slate-800 dark:text-slate-200">
+                            <span class="material-symbols-outlined text-primary text-3xl">hotel</span>
+                            <h2
+                                class="text-slate-800 dark:text-slate-200 text-xl font-bold leading-tight tracking-[-0.015em]">
+                                HotelBooking</h2>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button
+                                id="loginBtn" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em]">
+                                <span class="truncate">Đăng Nhập</span>
+                            </button>
+                            <button
+                                id="btnHelp" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 text-sm font-bold leading-normal tracking-[0.015em]">
+                                <span class="truncate">Trợ giúp</span>
+                            </button>
+                        </div>
+                    </header>
+                    <!-- Main Content -->
+                    <main class="flex-grow flex items-center justify-center">
+                        <div class="flex flex-col items-center gap-8 px-4 py-16 text-center">
+                            <!-- EmptyState -->
+                            <div class="flex flex-col items-center gap-6">
+                                <div class="text-primary">
+                                    <svg fill="none" height="120" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="1" viewbox="0 0 24 24" width="120"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <rect height="11" rx="2" ry="2" width="18" x="3" y="11"></rect>
+                                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                    </svg>
+                                </div>
+                                <div class="flex max-w-[560px] flex-col items-center gap-3">
+                                    <p
+                                        class="text-slate-900 dark:text-white text-3xl font-bold leading-tight tracking-[-0.015em]">
+                                        Lỗi 403: Truy Cập Bị Từ Chối
+                                    </p>
+                                </div>
+                                <div class="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+                                    <button
+                                        id="homeBtn" class="flex w-full sm:w-auto min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 px-6 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em]">
+                                        <span class="truncate">Quay Lại Trang Chủ</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                    <!-- Footer -->
+                    <footer
+                        class="flex flex-col gap-6 px-5 py-10 text-center @container mt-auto border-t border-slate-200 dark:border-slate-800">
+                        <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+                            <a class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal"
+                                href="#">Liên hệ</a>
+                            <a class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal"
+                                href="#">Trung tâm trợ giúp</a>
+                            <a class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal"
+                                href="#">Điều khoản dịch vụ</a>
+                        </div>
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <a href="#">
+                                <span class="material-symbols-outlined text-slate-500 dark:text-slate-400"
+                                    data-alt="Facebook icon">acute</span>
+                            </a>
+                            <a href="#">
+                                <span class="material-symbols-outlined text-slate-500 dark:text-slate-400"
+                                    data-alt="Twitter icon">flutter</span>
+                            </a>
+                            <a href="#">
+                                <span class="material-symbols-outlined text-slate-500 dark:text-slate-400"
+                                    data-alt="Instagram icon">photo_camera</span>
+                            </a>
+                        </div>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal">© 2024
+                            HotelBooking. Đã đăng ký bản quyền.</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Login redirect
+        document.getElementById('loginBtn').addEventListener('click', (e) => {
+            window.location.href = 'http://localhost:5500/FE/Auth/login.html';
+        })
+
+        // Home redirect
+        document.getElementById('homeBtn').addEventListener('click', (e) => {
+            window.location.href = 'http://localhost:5500/FE/index.html';
+        })
+    </script>
+</body>
+</html>

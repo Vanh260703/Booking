@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Trang Đăng nhập Người dùng</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#137fec",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+            },
+            fontFamily: {
+              display: ["Plus Jakarta Sans", "Noto Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+    </style>
+  </head>
+  <body
+    class="font-display bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200"
+  >
+    <div class="relative flex min-h-screen w-full flex-col group/design-root">
+      <div class="layout-container flex h-full grow flex-col">
+        <header
+          class="absolute top-0 left-0 right-0 z-10 flex items-center justify-between whitespace-nowrap p-4 sm:p-6 lg:p-8"
+        >
+          <div class="flex items-center gap-2 text-[#111418] dark:text-white">
+            <div class="size-6">
+              <svg
+                fill="currentColor"
+                viewbox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M39.5563 34.1455V13.8546C39.5563 15.708 36.8773 17.3437 32.7927 18.3189C30.2914 18.916 27.263 19.2655 24 19.2655C20.737 19.2655 17.7086 18.916 15.2073 18.3189C11.1227 17.3437 8.44365 15.708 8.44365 13.8546V34.1455C8.44365 35.9988 11.1227 37.6346 15.2073 38.6098C17.7086 39.2069 20.737 39.5564 24 39.5564C27.263 39.5564 30.2914 39.2069 32.7927 38.6098C36.8773 37.6346 39.5563 35.9988 39.5563 34.1455Z"
+                  fill="currentColor"
+                ></path>
+                <path
+                  clip-rule="evenodd"
+                  d="M10.4485 13.8519C10.4749 13.9271 10.6203 14.246 11.379 14.7361C12.298 15.3298 13.7492 15.9145 15.6717 16.3735C18.0007 16.9296 20.8712 17.2655 24 17.2655C27.1288 17.2655 29.9993 16.9296 32.3283 16.3735C34.2508 15.9145 35.702 15.3298 36.621 14.7361C37.3796 14.246 37.5251 13.9271 37.5515 13.8519C37.5287 13.7876 37.4333 13.5973 37.0635 13.2931C36.5266 12.8516 35.6288 12.3647 34.343 11.9175C31.79 11.0295 28.1333 10.4437 24 10.4437C19.8667 10.4437 16.2099 11.0295 13.657 11.9175C12.3712 12.3647 11.4734 12.8516 10.9365 13.2931C10.5667 13.5973 10.4713 13.7876 10.4485 13.8519ZM37.5563 18.7877C36.3176 19.3925 34.8502 19.8839 33.2571 20.2642C30.5836 20.9025 27.3973 21.2655 24 21.2655C20.6027 21.2655 17.4164 20.9025 14.7429 20.2642C13.1498 19.8839 11.6824 19.3925 10.4436 18.7877V34.1275C10.4515 34.1545 10.5427 34.4867 11.379 35.027C12.298 35.6207 13.7492 36.2054 15.6717 36.6644C18.0007 37.2205 20.8712 37.5564 24 37.5564C27.1288 37.5564 29.9993 37.2205 32.3283 36.6644C34.2508 36.2054 35.702 35.6207 36.621 35.027C37.4573 34.4867 37.5485 34.1546 37.5563 34.1275V18.7877ZM41.5563 13.8546V34.1455C41.5563 36.1078 40.158 37.5042 38.7915 38.3869C37.3498 39.3182 35.4192 40.0389 33.2571 40.5551C30.5836 41.1934 27.3973 41.5564 24 41.5564C20.6027 41.5564 17.4164 41.1934 14.7429 40.5551C12.5808 40.0389 10.6502 39.3182 9.20848 38.3869C7.84205 37.5042 6.44365 36.1078 6.44365 34.1455L6.44365 13.8546C6.44365 12.2684 7.37223 11.0454 8.39581 10.2036C9.43325 9.3505 10.8137 8.67141 12.343 8.13948C15.4203 7.06909 19.5418 6.44366 24 6.44366C28.4582 6.44366 32.5797 7.06909 35.657 8.13948C37.1863 8.67141 38.5667 9.3505 39.6042 10.2036C40.6278 11.0454 41.5563 12.2684 41.5563 13.8546Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                ></path>
+              </svg>
+            </div>
+            <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">
+              BookingHotels
+            </h2>
+          </div>
+        </header>
+        <main class="flex-1">
+          <div class="flex min-h-screen">
+            <div
+              class="flex-1 lg:w-1/2 flex flex-col justify-center items-center p-6 sm:p-12 bg-white dark:bg-background-dark"
+            >
+              <div class="w-full max-w-md space-y-8">
+                <div class="text-left">
+                  <h1
+                    class="text-3xl font-black text-gray-900 dark:text-white sm:text-4xl"
+                  >
+                    Đăng nhập vào tài khoản của bạn
+                  </h1>
+                  <p class="mt-2 text-base text-gray-500 dark:text-gray-400">
+                    Truy cập tài khoản của bạn để quản lý đặt phòng và khám phá
+                    các ưu đãi độc quyền.
+                  </p>
+                </div>
+                <form id="loginForm" class="space-y-6">
+                  <div
+                    id="formMessage"
+                    class="text-lg font-semibold text-red-600 dark:text-red-400 min-h-[1.5rem]"
+                    style="display: none"
+                  ></div>
+                  <div class="flex flex-col">
+                    <label
+                      class="text-[#111418] dark:text-gray-300 text-base font-medium leading-normal pb-2"
+                      for="username"
+                    >
+                      Tên đăng nhập
+                    </label>
+                    <div
+                      class="relative flex w-full flex-1 items-stretch rounded-lg"
+                    >
+                      <span
+                        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#617589]"
+                        >person</span
+                      >
+                      <input
+                        autocomplete="email"
+                        class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#dbe0e6] dark:border-gray-600 bg-background-light dark:bg-gray-800 h-14 placeholder:text-[#617589] pl-12 pr-4 text-base font-normal leading-normal"
+                        id="username"
+                        name="username"
+                        placeholder="Nhập vào tên đăng nhập của bạn"
+                        required
+                        type="text"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="flex flex-col mt-4">
+                    <label
+                      class="text-[#111418] dark:text-gray-300 text-base font-medium leading-normal pb-2"
+                      for="password"
+                    >
+                      Mật khẩu
+                    </label>
+                    <div
+                      class="relative flex w-full flex-1 items-stretch rounded-lg"
+                    >
+                      <!-- Icon bên trái giống username -->
+                      <span
+                        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#617589]"
+                        >lock</span
+                      >
+
+                      <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        placeholder="Nhập vào mật khẩu"
+                        class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#dbe0e6] dark:border-gray-600 bg-background-light dark:bg-gray-800 h-14 placeholder:text-[#617589] pl-12 pr-12 text-base font-normal leading-normal"
+                      />
+
+                      <!-- Icon toggle password bên phải -->
+                      <button
+                        type="button"
+                        class="toggle-password absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400"
+                        data-target="password"
+                      >
+                        <span class="material-symbols-outlined select-none"
+                          >visibility_off</span
+                        >
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center justify-between">
+                    <a
+                      class="text-sm font-normal text-primary hover:underline"
+                      href="forget-password.html"
+                      >Quên mật khẩu?</a
+                    >
+                  </div>
+                  <div>
+                    <button
+                      class="flex w-full min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50"
+                      type="submit"
+                    >
+                      <span class="truncate">Đăng nhập</span>
+                    </button>
+                  </div>
+                </form>
+                <div class="relative">
+                  <div
+                    aria-hidden="true"
+                    class="absolute inset-0 flex items-center"
+                  >
+                    <div
+                      class="w-full border-t border-gray-300 dark:border-gray-600"
+                    ></div>
+                  </div>
+                  <div class="relative flex justify-center text-sm">
+                    <span
+                      class="px-2 bg-white dark:bg-background-dark text-gray-500 dark:text-gray-400"
+                      >Hoặc tiếp tục với</span
+                    >
+                  </div>
+                </div>
+                <div>
+                  <div class="grid grid-cols-2 gap-4">
+                    <button
+                      id="google-register"
+                      class="flex items-center justify-center w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50"
+                    >
+                      <img
+                        class="w-6 h-6"
+                        data-alt="Google logo"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtXIuFWz-8mW0Je8yY6djBBazAPF2GHuzQ8JjvLS6Y3MpYmJkBmRlsCMJ0UWE21nstG9f8McjWkGIC4lDFUGkzL81n47ueDWBGte6DI9clHN0YGNaOZ_ZYUXBWorfgkh5NJ3XSrrNippI9pHz7KdrwMWiWLNq6lJfAk01T0tge1w_DxR63YPcIrLBoFJ_tfhWdOwO6sNYLtekbHKK2_VKd6dmTczE7p01jBJ2cIX0nBlmAy8axMDBAy3_Z_Gwwg1IZDYUDzbhTb0k"
+                      />
+                      <span
+                        class="ml-3 text-sm font-medium text-gray-700 dark:text-gray-200"
+                        >Google</span
+                      >
+                    </button>
+                    <button
+                      id="facebook-register"
+                      class="flex items-center justify-center w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50"
+                    >
+                      <img
+                        class="w-6 h-6"
+                        data-alt="Facebook logo"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKd4ndhH_ChtG__TxsGgElMUgks8qhQFPo1LUODrAw_4-Ukg_YbPxiCMQCrmM5xa_CiPLkV0GOMgGe5eKPbnPxyXLxW0qPSh7yFvb33Ba-ra_XKRlhG-NCQ6yAz9OQdrWCsss7jZJgJbVstd92UOKADZ0vyq8YTS-G6nae9wnBcig8w-61LR4-2dnk4RPGGSjRjNrXlXjTIzKE3mGk9U_GRM1pAHmdWm3Z76ZWT_MR53mIcj2svlK1fn8t_aBkchQow54CHVebKZY"
+                      />
+                      <span
+                        class="ml-3 text-sm font-medium text-gray-700 dark:text-gray-200"
+                        >Facebook</span
+                      >
+                    </button>
+                  </div>
+                </div>
+                <p class="text-center text-sm text-gray-500 dark:text-gray-400">
+                  Chưa có tài khoản?
+                  <a class="font-medium text-primary hover:underline" href="register.html"
+                    >Đăng ký ngay</a
+                  >
+                </p>
+              </div>
+            </div>
+            <div class="hidden lg:block lg:w-1/2">
+              <div
+                class="w-full h-full bg-center bg-no-repeat bg-cover"
+                data-alt="A beautiful modern hotel poolside with lounge chairs and umbrellas during the day"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA0d-I7LjdR8Wh37LtS_SbnLMXnnlD7sbdDhlURE9gvUdw2vwpOE3If5fKvc-CwtgiMwXhLV0EGbTnS1-Pmdh60u-T6pn4crSl9xrSgBY2UMzJQdfRkuTjRfr6l8NEHbEyFyxHOoi5K8RLskVjbLSlDVJwjW95MbYCl8-wuLjy8-hQE4dKvXqZdEyLyWcdPvJlOd0KrYjyU-cBHyQMpwWerdfbpkKE9lGfghGw3adbMO9_nzDv_3RgwLMezf4ON4GQARDgz1i2v694');
+                "
+              ></div>
+            </div>
+          </div>
+        </main>
+        <footer
+          class="w-full bg-background-light dark:bg-background-dark py-4 px-6 sm:px-12 border-t border-gray-200 dark:border-gray-700"
+        >
+          <div
+            class="flex flex-col sm:flex-row justify-between items-center text-sm text-gray-500 dark:text-gray-400"
+          >
+            <p>© 2024 BookingHotels. All rights reserved.</p>
+            <div class="flex space-x-4 mt-2 sm:mt-0">
+              <a class="hover:underline" href="#">Điều khoản Dịch vụ</a>
+              <a class="hover:underline" href="#">Chính sách Bảo mật</a>
+              <a class="hover:underline" href="#">Liên hệ</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <script>
+      // Toggle password visibility
+      document.querySelectorAll(".toggle-password").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const inputId = btn.getAttribute("data-target");
+          const input = document.getElementById(inputId);
+          const icon = btn.querySelector("span");
+          if (input.type === "password") {
+            input.type = "text";
+            icon.textContent = "visibility";
+          } else {
+            input.type = "password";
+            icon.textContent = "visibility_off";
+          }
+        });
+      });
+
+      // helper: showToast top-right (improved animation + spinner -> check)
+      function showToast(message, { type = "success", duration = 2500 } = {}) {
+        // inject toast CSS once
+        if (!document.getElementById("toast-styles")) {
+          const css = `
+            /* container handled inline when created */
+            .toast {
+              display:flex;
+              align-items:center;
+              gap:12px;
+              color: #fff;
+              padding: 10px 14px;
+              border-radius: 10px;
+              box-shadow: 0 10px 30px rgba(2,6,23,0.16);
+              transform-origin: right top;
+              will-change: transform, opacity;
+            }
+            .toast-enter {
+              animation: toastIn 320ms cubic-bezier(.2,.9,.28,1);
+            }
+            .toast-leave {
+              transition: opacity 260ms ease, transform 260ms ease;
+              opacity:0;
+              transform: translateY(-6px) scale(.995);
+            }
+            @keyframes toastIn {
+              from { opacity:0; transform: translateY(-10px) scale(.98); }
+              to { opacity:1; transform: translateY(0) scale(1); }
+            }
+
+            .toast-message { font-size:14px; line-height:1; }
+
+            /* spinner */
+            .toast-spinner {
+              width:28px;
+              height:28px;
+              display:inline-grid;
+              place-items:center;
+            }
+            .toast-spinner svg { width:22px; height:22px; display:block; }
+
+            .spin {
+              animation: spinAnim 900ms linear forwards;
+              transform-origin: 50% 50%;
+            }
+            @keyframes spinAnim {
+              from { transform: rotate(0deg); }
+              to { transform: rotate(360deg); }
+            }
+
+            /* check mark circle */
+            .check-wrap {
+              width:28px;
+              height:28px;
+              border-radius:50%;
+              display:inline-grid;
+              place-items:center;
+              transform: scale(0.6) rotate(-10deg);
+              opacity:0;
+              transition: transform 280ms cubic-bezier(.2,.9,.28,1), opacity 220ms ease;
+            }
+            .check-wrap.show {
+              transform: scale(1) rotate(0deg);
+              opacity:1;
+            }
+            .check-circle {
+              width:22px;
+              height:22px;
+              border-radius:50%;
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              background: #10b981; /* green-500 */
+              box-shadow: 0 6px 16px rgba(16,185,129,0.16);
+            }
+            .check-svg {
+              width:12px;
+              height:12px;
+              color:white;
+            }
+          `;
+          const style = document.createElement("style");
+          style.id = "toast-styles";
+          style.appendChild(document.createTextNode(css));
+          document.head.appendChild(style);
+        }
+
+        let container = document.getElementById("toast-container");
+        if (!container) {
+          container = document.createElement("div");
+          container.id = "toast-container";
+          container.className =
+            "fixed top-4 right-4 z-[9999] flex flex-col gap-3 items-end";
+          document.body.appendChild(container);
+        }
+
+        const bg = type === "success" ? "bg-green-600" : "bg-red-600";
+        const toast = document.createElement("div");
+        toast.className = `toast ${bg} toast-enter`;
+        toast.setAttribute("role", "status");
+        toast.setAttribute("aria-live", "polite");
+
+        // inner structure: spinner -> check -> message
+        const spinnerWrap = document.createElement("div");
+        spinnerWrap.className = "toast-spinner";
+        spinnerWrap.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="8" stroke="rgba(255,255,255,0.16)" stroke-width="3"></circle>
+            <circle class="spin" cx="12" cy="12" r="8" stroke="white" stroke-width="3" stroke-linecap="round"
+              stroke-dasharray="25 150" stroke-dashoffset="0"></circle>
+          </svg>
+        `;
+
+        const checkWrap = document.createElement("div");
+        checkWrap.className = "check-wrap";
+        checkWrap.innerHTML = `
+          <div class="check-circle">
+            <svg class="check-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M20 6L9 17l-5-5" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        `;
+
+        const msg = document.createElement("div");
+        msg.className = "toast-message";
+        msg.textContent = message;
+
+        toast.appendChild(spinnerWrap);
+        toast.appendChild(checkWrap);
+        toast.appendChild(msg);
+        container.appendChild(toast);
+
+        // When spinner finishes one full rotation, swap to check
+        const spinDuration = 900; // matches CSS spinAnim
+        let swapped = false;
+        const swapToCheck = () => {
+          if (swapped) return;
+          swapped = true;
+          // fade out spinner then show check
+          spinnerWrap.style.transition = "opacity 180ms ease";
+          spinnerWrap.style.opacity = "0";
+          setTimeout(() => {
+            spinnerWrap.remove();
+            checkWrap.classList.add("show");
+          }, 190);
+        };
+
+        // ensure swap happens after spinDuration (one full rotation)
+        const spinTimer = setTimeout(swapToCheck, spinDuration);
+
+        // auto-remove after duration
+        const removeTimer = setTimeout(() => {
+          // leave animation
+          toast.classList.add("toast-leave");
+          // cleanup after transition
+          setTimeout(() => {
+            toast.remove();
+          }, 300);
+        }, duration);
+
+        // Allow manual removal on click
+        toast.addEventListener("click", () => {
+          clearTimeout(removeTimer);
+          clearTimeout(spinTimer);
+          // immediate swap and remove
+          swapToCheck();
+          toast.classList.add("toast-leave");
+          setTimeout(() => toast.remove(), 260);
+        });
+
+        // return a dismiss function if caller wants to remove earlier
+        return () => {
+          clearTimeout(removeTimer);
+          clearTimeout(spinTimer);
+          toast.classList.add("toast-leave");
+          setTimeout(() => toast.remove(), 260);
+        };
+      }
+
+      // Lgoin with Google
+      document
+        .getElementById("google-register")
+        .addEventListener("click", async (e) => {
+          window.location.href = "http://localhost:3000/api/auth/google";
+        });
+
+      // Register with Facebook
+      document
+        .getElementById("facebook-register")
+        .addEventListener("click", async (e) => {
+          window.location.href = "http://localhost:3000/api/auth/facebook";
+        });
+
+      // Login with account
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const messageForm = document.getElementById("formMessage");
+
+          const formData = {
+            username: this.username.value,
+            password: this.password.value,
+          };
+
+          const res = await fetch("http://localhost:3000/api/auth/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+            credentials: "include",
+          });
+
+          const data = await res.json();
+
+          if (!data.success) {
+            messageForm.style.display = "block";
+            messageForm.innerText = data.message;
+          } else {
+            // Hiển thị toast ở góc phải trên và redirect đến trang login
+            showToast(data.message || "Đăng nhập thành công", {
+              type: "success",
+              duration: 1800,
+            });
+            // redirect sau một khoảng nhỏ để user thấy toast
+            setTimeout(() => {
+              window.location.href = "../index.html";
+            }, 1500);
+          }
+        });
+    </script>
+  </body>
+</html>
+

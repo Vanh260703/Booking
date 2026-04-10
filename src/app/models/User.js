@@ -7,11 +7,18 @@ const UserSchema = mongoose.Schema({
     password: {type: String},
     phone: {type: String},
     role: {type: String, enum: ['user', 'hotel_owner', 'admin'], default: 'user'},
-    avatar: {url: String, publicId: String},
+    avatar: {type: String},
     gender: {type: String, enum: ['male', 'female', 'other']},
     passwordResetToken: String,
     passwordResetExpires: Date,
     isVerify: {type: Boolean, default: false},
+    status: {
+        type: String,
+        enum: ['pending', 'active'],
+        default: 'pending',
+    },
+    isBusinessAccount: {type: Boolean, default: false},
+    businessName: String,
     isCompleted: {type: Boolean, default: false},
     federated_credentials: [
         {
@@ -19,6 +26,8 @@ const UserSchema = mongoose.Schema({
             subject: String
         }
     ],
+    points: { type: Number, min: 0, default: 0 },
+    redemmedCoupons: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Coupon' }],
 }, {
     timestamps: true
 });

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Trang Đăng nhập Chủ khách sạn</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+    </style>
+</head>
+
+<body class="font-display">
+    <div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root"
+        style='font-family: Manrope, "Noto Sans", sans-serif;'>
+        <div class="layout-container flex h-full grow flex-col">
+            <div class="flex flex-1 justify-center">
+                <div class="layout-content-container flex flex-col w-full flex-1">
+                    <header
+                        class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f0f2f4] dark:border-b-[#1f2937] px-6 sm:px-10 py-4">
+                        <div class="flex items-center gap-4 text-[#111418] dark:text-white">
+                            <div class="size-6 text-primary">
+                                <svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M36.7273 44C33.9891 44 31.6043 39.8386 30.3636 33.69C29.123 39.8386 26.7382 44 24 44C21.2618 44 18.877 39.8386 17.6364 33.69C16.3957 39.8386 14.0109 44 11.2727 44C7.25611 44 4 35.0457 4 24C4 12.9543 7.25611 4 11.2727 4C14.0109 4 16.3957 8.16144 17.6364 14.31C18.877 8.16144 21.2618 4 24 4C26.7382 4 29.123 8.16144 30.3636 14.31C31.6043 8.16144 33.9891 4 36.7273 4C40.7439 4 44 12.9543 44 24C44 35.0457 40.7439 44 36.7273 44Z"
+                                        fill="currentColor"></path>
+                                </svg>
+                            </div>
+                            <h2
+                                class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">
+                                Hotel Booking Platform</h2>
+                        </div>
+                        <a class="text-sm font-medium text-primary hover:underline" href="#">Quay về trang chủ</a>
+                    </header>
+                    <main class="flex flex-1 items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+                        <div class="flex flex-col gap-8 w-full max-w-md">
+                            <div class="flex flex-col gap-3 text-center">
+                                <p
+                                    class="text-[#111418] dark:text-white text-3xl sm:text-4xl font-black leading-tight tracking-[-0.033em]">
+                                    Đăng nhập Cổng thông tin Chủ khách sạn</p>
+                                <p class="text-[#617589] dark:text-slate-400 text-base font-normal leading-normal">Quản
+                                    lý đặt phòng, phòng và doanh thu của bạn.</p>
+                            </div>
+                            <div class="flex flex-col gap-6">
+                                <div
+                                    id="formMessage"
+                                    class="text-lg font-semibold text-center text-red-600 dark:text-red-400 min-h-[1.5rem]"
+                                    style="display: none"
+                                ></div>
+                                <label class="flex flex-col w-full">
+                                    <p
+                                        class="text-[#111418] dark:text-slate-200 text-base font-medium leading-normal pb-2">
+                                        Tên đăng nhập</p>
+                                    <input
+                                        class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#dbe0e6] dark:border-slate-700 bg-white dark:bg-background-dark focus:border-primary dark:focus:border-primary h-14 placeholder:text-[#617589] p-[15px] text-base font-normal leading-normal"
+                                        placeholder="Nhập vào tên đăng nhập" type="text" value="" id="username" name="username" />
+                                </label>
+                                <label class="flex flex-col w-full">
+                                    <p
+                                        class="text-[#111418] dark:text-slate-200 text-base font-medium leading-normal pb-2">
+                                        Mật khẩu</p>
+                                    <div class="relative flex w-full flex-1 items-stretch">
+                                        <input
+                                            class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#dbe0e6] dark:border-slate-700 bg-white dark:bg-background-dark focus:border-primary dark:focus:border-primary h-14 placeholder:text-[#617589] p-[15px] pr-12 text-base font-normal leading-normal"
+                                            placeholder="Nhập mật khẩu của bạn" type="password" value="" id="password" name="password" />
+                                        <button aria-label="Toggle password visibility"
+                                            class="absolute inset-y-0 right-0 flex items-center pr-4 text-[#617589] dark:text-slate-400">
+                                            <span class="material-symbols-outlined" data-icon="Eye">visibility</span>
+                                        </button>
+                                    </div>
+                                </label>
+                                <a class="text-primary text-sm font-medium leading-normal text-right -mt-4 hover:underline"
+                                    href="#">Quên mật khẩu?</a>
+                                <button
+                                    id="loginBtn" class="flex items-center justify-center whitespace-nowrap transition-colors duration-200 h-14 p-[15px] rounded-lg w-full text-base font-semibold leading-normal bg-primary text-white hover:bg-primary/90">
+                                    Đăng nhập
+                                </button>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-sm text-[#617589] dark:text-slate-400">
+                                    Chưa có tài khoản? <a class="font-medium text-primary hover:underline" href="#">Đăng
+                                        ký tại đây</a>
+                                </p>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function showToast(message, { type = "success", duration = 2500 } = {}) {
+            // inject toast CSS once
+            if (!document.getElementById("toast-styles")) {
+            const css = `
+                /* container handled inline when created */
+                .toast {
+                display:flex;
+                align-items:center;
+                gap:12px;
+                color: #fff;
+                padding: 10px 14px;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(2,6,23,0.16);
+                transform-origin: right top;
+                will-change: transform, opacity;
+                }
+                .toast-enter {
+                animation: toastIn 320ms cubic-bezier(.2,.9,.28,1);
+                }
+                .toast-leave {
+                transition: opacity 260ms ease, transform 260ms ease;
+                opacity:0;
+                transform: translateY(-6px) scale(.995);
+                }
+                @keyframes toastIn {
+                from { opacity:0; transform: translateY(-10px) scale(.98); }
+                to { opacity:1; transform: translateY(0) scale(1); }
+                }
+
+                .toast-message { font-size:14px; line-height:1; }
+
+                /* spinner */
+                .toast-spinner {
+                width:28px;
+                height:28px;
+                display:inline-grid;
+                place-items:center;
+                }
+                .toast-spinner svg { width:22px; height:22px; display:block; }
+
+                .spin {
+                animation: spinAnim 900ms linear forwards;
+                transform-origin: 50% 50%;
+                }
+                @keyframes spinAnim {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+                }
+
+                /* check mark circle */
+                .check-wrap {
+                width:28px;
+                height:28px;
+                border-radius:50%;
+                display:inline-grid;
+                place-items:center;
+                transform: scale(0.6) rotate(-10deg);
+                opacity:0;
+                transition: transform 280ms cubic-bezier(.2,.9,.28,1), opacity 220ms ease;
+                }
+                .check-wrap.show {
+                transform: scale(1) rotate(0deg);
+                opacity:1;
+                }
+                .check-circle {
+                width:22px;
+                height:22px;
+                border-radius:50%;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                background: #10b981; /* green-500 */
+                box-shadow: 0 6px 16px rgba(16,185,129,0.16);
+                }
+                .check-svg {
+                width:12px;
+                height:12px;
+                color:white;
+                }
+            `;
+            const style = document.createElement("style");
+            style.id = "toast-styles";
+            style.appendChild(document.createTextNode(css));
+            document.head.appendChild(style);
+            }
+
+            let container = document.getElementById("toast-container");
+            if (!container) {
+            container = document.createElement("div");
+            container.id = "toast-container";
+            container.className =
+                "fixed top-4 right-4 z-[9999] flex flex-col gap-3 items-end";
+            document.body.appendChild(container);
+            }
+
+            const bg = type === "success" ? "bg-green-600" : "bg-red-600";
+            const toast = document.createElement("div");
+            toast.className = `toast ${bg} toast-enter`;
+            toast.setAttribute("role", "status");
+            toast.setAttribute("aria-live", "polite");
+
+            // inner structure: spinner -> check -> message
+            const spinnerWrap = document.createElement("div");
+            spinnerWrap.className = "toast-spinner";
+            spinnerWrap.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="8" stroke="rgba(255,255,255,0.16)" stroke-width="3"></circle>
+                <circle class="spin" cx="12" cy="12" r="8" stroke="white" stroke-width="3" stroke-linecap="round"
+                stroke-dasharray="25 150" stroke-dashoffset="0"></circle>
+            </svg>
+            `;
+
+            const checkWrap = document.createElement("div");
+            checkWrap.className = "check-wrap";
+            checkWrap.innerHTML = `
+            <div class="check-circle">
+                <svg class="check-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M20 6L9 17l-5-5" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            `;
+
+            const msg = document.createElement("div");
+            msg.className = "toast-message";
+            msg.textContent = message;
+
+            toast.appendChild(spinnerWrap);
+            toast.appendChild(checkWrap);
+            toast.appendChild(msg);
+            container.appendChild(toast);
+
+            // When spinner finishes one full rotation, swap to check
+            const spinDuration = 900; // matches CSS spinAnim
+            let swapped = false;
+            const swapToCheck = () => {
+            if (swapped) return;
+            swapped = true;
+            // fade out spinner then show check
+            spinnerWrap.style.transition = "opacity 180ms ease";
+            spinnerWrap.style.opacity = "0";
+            setTimeout(() => {
+                spinnerWrap.remove();
+                checkWrap.classList.add("show");
+            }, 190);
+            };
+
+            // ensure swap happens after spinDuration (one full rotation)
+            const spinTimer = setTimeout(swapToCheck, spinDuration);
+
+            // auto-remove after duration
+            const removeTimer = setTimeout(() => {
+            // leave animation
+            toast.classList.add("toast-leave");
+            // cleanup after transition
+            setTimeout(() => {
+                toast.remove();
+            }, 300);
+            }, duration);
+
+            // Allow manual removal on click
+            toast.addEventListener("click", () => {
+            clearTimeout(removeTimer);
+            clearTimeout(spinTimer);
+            // immediate swap and remove
+            swapToCheck();
+            toast.classList.add("toast-leave");
+            setTimeout(() => toast.remove(), 260);
+            });
+
+            // return a dismiss function if caller wants to remove earlier
+            return () => {
+            clearTimeout(removeTimer);
+            clearTimeout(spinTimer);
+            toast.classList.add("toast-leave");
+            setTimeout(() => toast.remove(), 260);
+            };
+        }
+
+        const username = document.getElementById('username');
+        const password = document.getElementById('password');
+        const formMessage = document.getElementById('formMessage');
+       
+        document.getElementById('loginBtn').addEventListener('click', async (e) => {
+            e.preventDefault();
+
+            const formData = {
+                username: username.value,
+                password: password.value,
+            }
+
+           const res = await fetch('http://localhost:3000/api/auth/login-hotel-owner', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData),
+                credentials: 'include'
+           });
+
+           const data = await res.json();
+
+           if (!data.success) {
+            formMessage.style.display = 'block';
+            formMessage.innerText = data.message;
+           } else {
+                showToast(data.message || "Đăng nhập thành công", {
+                    type: "success",
+                    duration: 1800,
+                });
+                // redirect sau một khoảng nhỏ để user thấy toast
+                setTimeout(() => {
+                    window.location.href = "../Dashboard/hotel-owner.html";
+                }, 1500);
+           }
+        })
+    </script>
+</body>
+</html>
